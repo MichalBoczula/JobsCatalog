@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B4F782C3-9955-4EFB-B66C-D572649A5487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.API", "JobsCatalog.API\JobsCatalog.API.csproj", "{8456F28C-D61B-422C-9346-8D30C6005F26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.API", "JobsCatalog.API\JobsCatalog.API.csproj", "{8456F28C-D61B-422C-9346-8D30C6005F26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.Application", "JobsCatalog.Application\JobsCatalog.Application.csproj", "{076B60EC-8220-4706-A80A-3FC8D7D73565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.Application", "JobsCatalog.Application\JobsCatalog.Application.csproj", "{076B60EC-8220-4706-A80A-3FC8D7D73565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.Domain", "JobsCatalog.Domain\JobsCatalog.Domain.csproj", "{4F8F6219-2AAD-4840-B17B-3E6A50014F4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.Domain", "JobsCatalog.Domain\JobsCatalog.Domain.csproj", "{4F8F6219-2AAD-4840-B17B-3E6A50014F4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.Persistance", "JobsCatalog.Persistance\JobsCatalog.Persistance.csproj", "{25AC0CD7-48D1-45CB-9672-2B501B02DCB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.Persistance", "JobsCatalog.Persistance\JobsCatalog.Persistance.csproj", "{25AC0CD7-48D1-45CB-9672-2B501B02DCB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.UnitTests", "JobsCatalog.UnitTests\JobsCatalog.UnitTests.csproj", "{0920C336-346B-4E05-A4BF-22A433C38563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.UnitTests", "JobsCatalog.UnitTests\JobsCatalog.UnitTests.csproj", "{0920C336-346B-4E05-A4BF-22A433C38563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
