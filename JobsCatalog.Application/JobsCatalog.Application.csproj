@@ -14,4 +14,8 @@
     <ProjectReference Include="..\JobsCatalog.Domain\JobsCatalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
+  </ItemGroup>
+
 </Project>
