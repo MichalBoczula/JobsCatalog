@@ -7,6 +7,7 @@ using JobsCatalog.Persistance.Seed.Dictionaries;
 using JobsCatalog.Persistance.Seed.Entities;
 using JobsCatalog.Persistance.Seed.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -26,6 +27,7 @@ namespace JobsCatalog.Persistance.Context
         public DbSet<JobDescription> JobDescriptions { get; set; }
         public DbSet<JobOffer> JobOffers { get; set; }
         public DbSet<JobOfferTechnology> JobOfferTechnologies { get; set; }
+        private IDbContextTransaction _transaction;
 
         public JobsCatalogDbContext([NotNull] DbContextOptions<JobsCatalogDbContext> options) : base(options)
         {
@@ -69,6 +71,23 @@ namespace JobsCatalog.Persistance.Context
                 }
             }
             return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task BeginTransaction()
+        {
+            _transaction = await this.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransaction(CancellationToken cancellationToken)
+        {
+            await _transaction.CommitAsync(cancellationToken);
+            _transaction.Dispose();
+        }
+        
+        public async Task RollbackTransaction(CancellationToken cancellationToken)
+        {
+            await _transaction.RollbackAsync(cancellationToken);
+            _transaction.Dispose();
         }
     }
 }

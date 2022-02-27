@@ -20,5 +20,9 @@ namespace JobsCatalog.Application.Contracts.Persistance
         DbSet<JobOffer> JobOffers { get; set; }
         DbSet<JobOfferTechnology> JobOfferTechnologies { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task BeginTransaction();
+        Task CommitTransaction(CancellationToken cancellationToken);
+        Task RollbackTransaction(CancellationToken cancellationToken);
+       
     }
 }

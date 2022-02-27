@@ -15,7 +15,6 @@ namespace JobsCatalog.Test.Common
             Context = DbContexFactory.Create().Object;
         }
 
-
         public void Dispose()
         {
             DbContexFactory.CleanUp(Context);

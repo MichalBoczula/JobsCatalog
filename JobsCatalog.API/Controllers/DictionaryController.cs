@@ -1,6 +1,6 @@
-﻿using JobsCatalog.Application.Features.Dictionaries.ExperienceLevels;
-using JobsCatalog.Application.Features.Dictionaries.ProgrammingLanguages;
-using JobsCatalog.Application.Features.Dictionaries.Technologies;
+﻿using JobsCatalog.Application.Features.Dictionaries.Queries.ExperienceLevels;
+using JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLanguages;
+using JobsCatalog.Application.Features.Dictionaries.Queries.Technologies;
 using JobsCatalogApi.Common;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;

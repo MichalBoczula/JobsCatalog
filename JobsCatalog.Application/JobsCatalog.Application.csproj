@@ -14,4 +14,9 @@
     <ProjectReference Include="..\JobsCatalog.Domain\JobsCatalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Entities\Commands\DeleteJob\" />
+    <Folder Include="Features\Entities\Commands\UpdateJob\" />
+  </ItemGroup>
+
 </Project>

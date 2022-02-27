@@ -1,5 +1,5 @@
-﻿using JobsCatalog.Application.Features.Entities.JobDetails;
-using JobsCatalog.Application.Features.Entities.JobsList;
+﻿using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
+using JobsCatalog.Application.Features.Entities.Queries.JobsList;
 using JobsCatalogApi.Common;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
