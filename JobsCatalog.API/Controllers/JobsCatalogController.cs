@@ -17,7 +17,6 @@ namespace JobsCatalogApi.Controllers
         [HttpGet]
         public async Task<ActionResult> GetJobsList()
         {
-            Log.Information("Controller {JobsCatalogController} action {GetJobsList}");
             var vm = await Mediator.Send(new JobsListQuery());
             return Ok(vm);
         }
@@ -25,10 +24,8 @@ namespace JobsCatalogApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetJobDetails(int id)
         {
-            Log.ForContext("id", id)
-                .Information("Controller {JobsCatalogController} action {GetJobDetails}");
             var vm = await Mediator.Send(new JobDetailsQuery() { Id = id});
-            return Ok(vm);
+            return vm is null? NotFound() : Ok(vm);
         }
     }
 }

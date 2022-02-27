@@ -18,7 +18,6 @@ namespace JobsCatalogApi.Controllers
         [HttpGet("experienceLevels")]
         public async Task<ActionResult<ExperienceLevelVm>> GetExperienceLevels()
         {
-            Log.Information("Controller {DictionaryController} action {GetExperienceLevels}");
             var vm = await Mediator.Send(new ExperienceLevelQuery());
             return Ok(vm);
         }
@@ -26,7 +25,6 @@ namespace JobsCatalogApi.Controllers
         [HttpGet("programmingLanguages")]
         public async Task<ActionResult<List<ProgrammingLanguageVm>>> GetProgrammingLanguages()
         {
-            Log.Information("Controller {DictionaryController} action {GetExperienceLevels}");
             var vm = await Mediator.Send(new ProgrammingLanguageQuery());
             return Ok(vm);
         }
@@ -34,7 +32,6 @@ namespace JobsCatalogApi.Controllers
         [HttpGet("technologies")]
         public async Task<ActionResult<TechnologyVm>> GetTechnologies()
         {
-            Log.Information("Controller {DictionaryController} action {GetExperienceLevels}");
             var vm = await Mediator.Send(new TechnologyQuery());
             return Ok(vm);
         }
