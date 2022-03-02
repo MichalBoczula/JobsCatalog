@@ -17,6 +17,7 @@ namespace JobsCatalog.Application.Behaviors
         {
             _logger = logger;
         }
+
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;

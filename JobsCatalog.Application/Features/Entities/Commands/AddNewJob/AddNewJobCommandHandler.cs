@@ -59,11 +59,11 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                 await _context.SaveChangesAsync(cancellationToken);
 
                 var technologies = request.Model.Technologies
-                    .Select(x=> new JobOfferTechnology
+                    .Select(x => new JobOfferTechnology
                     {
                         JobOfferId = jobOffer.Id,
                         TechnologyId = x
-                    });
+                    }).ToList();
 
                 _context.JobOfferTechnologies.AddRange(technologies);
 
