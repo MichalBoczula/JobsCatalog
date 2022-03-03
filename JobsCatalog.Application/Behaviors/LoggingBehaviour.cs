@@ -22,8 +22,9 @@ namespace JobsCatalog.Application.Behaviors
         {
             var requestName = typeof(TRequest).Name;
 
+            await Task.Run(() => 
             _logger.LogInformation("JobsCatalog Request: {Name} {@Request}",
-                requestName, request);
+                requestName, request), cancellationToken);
         }
     }
 }

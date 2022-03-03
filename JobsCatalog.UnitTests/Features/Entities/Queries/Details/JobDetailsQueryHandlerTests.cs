@@ -1,9 +1,12 @@
 ﻿using FluentAssertions;
 using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
+using JobsCatalog.Domain.Entities;
 using JobsCatalog.Persistance.Context;
 using JobsCatalog.Test.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +28,7 @@ namespace JobsCatalog.UnitTests.Features.Entities.Queries.Details
         public async Task ShouldReturnObject()
         {
             var handler = new JobDetailsQueryHandler(_context);
-            var result = await handler.Handle(new JobDetailsQuery() { Id = 1} , CancellationToken.None);
+            var result = await handler.Handle(new JobDetailsQuery() { Id = 1 }, CancellationToken.None);
             result.Should().BeOfType<JobDetailsVm>();
             result.Id.Should().BeGreaterThan(0);
             result.PositionName.Should().NotBeNullOrWhiteSpace();
