@@ -2,7 +2,12 @@
 using JobsCatalog.Application.Features.Dictionaries.Queries.ExperienceLevels;
 using JobsCatalog.Persistance.Context;
 using JobsCatalog.Test.Common;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

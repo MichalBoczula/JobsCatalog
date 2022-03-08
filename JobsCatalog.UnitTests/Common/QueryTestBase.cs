@@ -1,5 +1,7 @@
 ﻿using JobsCatalog.Persistance.Context;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Xunit;
 
 namespace JobsCatalog.Test.Common

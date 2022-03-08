@@ -1,4 +1,8 @@
-﻿namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
 {
     public class JobsListVm
     {

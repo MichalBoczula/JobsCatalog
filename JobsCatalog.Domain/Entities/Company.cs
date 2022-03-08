@@ -1,5 +1,7 @@
 ﻿using JobsCatalog.Domain.Common;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace JobsCatalog.Domain.Entities
 {

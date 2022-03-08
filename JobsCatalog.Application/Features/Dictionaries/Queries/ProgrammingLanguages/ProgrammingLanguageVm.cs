@@ -1,4 +1,8 @@
-﻿namespace JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLanguages
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLanguages
 {
     public class ProgrammingLanguageVm
     {

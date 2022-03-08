@@ -1,5 +1,8 @@
 ﻿using JobsCatalog.Domain.Helper;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace JobsCatalog.Persistance.Seed.Helper
 {
