@@ -3,10 +3,7 @@ using JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLanguages
 using JobsCatalog.Application.Features.Dictionaries.Queries.Technologies;
 using JobsCatalogApi.Common;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobsCatalogApi.Controllers

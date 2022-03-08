@@ -1,23 +1,21 @@
 ﻿using FluentAssertions;
 using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
 using JobsCatalog.Persistance.Context;
-using JobsCatalog.Test.Common;
-using System;
+using JobsCatalog.UnitTests.Common;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.UnitTests.Features.Entities.Commands
+namespace JobsCatalog.UnitTests.Features.Entities.Commands.AddNewJob
 {
-    [Collection("QueryCollection")]
+    [Collection("CommandCollection")]
     public class AddNewJobCommandHandlerTests
     {
         private readonly JobsCatalogDbContext _context;
 
-        public AddNewJobCommandHandlerTests(QueryTestBase testBase)
+        public AddNewJobCommandHandlerTests(CommandTestBase testBase)
         {
             _context = testBase.Context;
         }

@@ -1,6 +1,4 @@
-﻿using JobsCatalog.Domain.Dictionaries;
-
-namespace JobsCatalog.Application.Features.Additional.Queries
+﻿namespace JobsCatalog.Application.Features.Additional.Queries
 {
     public class ExperienceLevelSalariesDto
     {

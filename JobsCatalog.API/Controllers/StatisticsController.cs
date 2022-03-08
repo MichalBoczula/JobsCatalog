@@ -1,9 +1,6 @@
-﻿using JobsCatalog.Application.Features.Additional.Queries;
+﻿using JobsCatalog.Application.Features.Additional.Queries.AveragePayment;
 using JobsCatalogApi.Common;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobsCatalog.API.Controllers

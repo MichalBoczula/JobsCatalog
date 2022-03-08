@@ -1,13 +1,8 @@
 ﻿using JobsCatalog.Application.Contracts.Persistance;
-using JobsCatalog.Application.Features.Entities.Commands;
-using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
 using JobsCatalog.Domain.Entities;
 using JobsCatalog.Domain.Helper;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

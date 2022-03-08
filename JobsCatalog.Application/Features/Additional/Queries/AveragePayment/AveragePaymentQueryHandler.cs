@@ -1,14 +1,11 @@
 ﻿using JobsCatalog.Application.Contracts.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JobsCatalog.Application.Features.Additional.Queries
+namespace JobsCatalog.Application.Features.Additional.Queries.AveragePayment
 {
     public class AveragePaymentQueryHandler : IRequestHandler<AveragePaymentQuery, AveragePaymentVm>
     {
@@ -26,10 +23,11 @@ namespace JobsCatalog.Application.Features.Additional.Queries
                     jo => jo.ExperienceLevelId,
                     el => el.Id,
                     (jo, el) => new { el.Name, jo });
-           
-            if (request.ExperienceLevelName != "all")
+            var raaa = request.ExperienceLevelName;
+            var raaa2 = request.ExperienceLevelName.ToLower();
+            if (request.ExperienceLevelName.ToLower().Trim() != "all")
             {
-                q1 = q1.Where(x => x.Name == request.ExperienceLevelName);
+                q1 = q1.Where(x => x.Name.ToLower() == request.ExperienceLevelName.ToLower().Trim());
             }
 
             var result = await q1.GroupBy(x => x.Name)

@@ -1,9 +1,5 @@
-﻿using JobsCatalog.Domain.Common;
-using JobsCatalog.Domain.Dictionaries;
+﻿using JobsCatalog.Domain.Dictionaries;
 using JobsCatalog.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobsCatalog.Domain.Helper
 {

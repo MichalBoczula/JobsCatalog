@@ -3,10 +3,7 @@ using JobsCatalog.Application.Behaviors;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace JobsCatalog.Application.DependencyInjection
 {

@@ -1,14 +1,15 @@
 ﻿using JobsCatalog.Persistance.Context;
+using JobsCatalog.Test.Common;
 using System;
 using Xunit;
 
-namespace JobsCatalog.Test.Common
+namespace JobsCatalog.UnitTests.Common
 {
-    public class QueryTestBase : IDisposable
+    public class CommandTestBase : IDisposable
     {
         public JobsCatalogDbContext Context { get; set; }
 
-        public QueryTestBase()
+        public CommandTestBase()
         {
             Context = DbContexFactory.Create().Object;
         }
@@ -19,8 +20,8 @@ namespace JobsCatalog.Test.Common
         }
     }
 
-    [CollectionDefinition("QueryCollection")]
-    public class QueryCollection : ICollectionFixture<QueryTestBase>
+    [CollectionDefinition("CommandCollection")]
+    public class CommandCollection : ICollectionFixture<CommandTestBase>
     {
     }
 }

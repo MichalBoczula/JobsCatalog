@@ -1,8 +1,6 @@
 ﻿using JobsCatalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobsCatalog.Persistance.Seed.Entities
 {
