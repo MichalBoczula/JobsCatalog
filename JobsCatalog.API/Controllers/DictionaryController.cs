@@ -2,6 +2,7 @@
 using JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLanguages;
 using JobsCatalog.Application.Features.Dictionaries.Queries.Technologies;
 using JobsCatalogApi.Common;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System;
@@ -16,6 +17,9 @@ namespace JobsCatalogApi.Controllers
     public class DictionaryController : BaseController
     {
         [HttpGet("experienceLevels")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ExperienceLevelVm>> GetExperienceLevels()
         {
             var vm = await Mediator.Send(new ExperienceLevelQuery());
@@ -23,6 +27,9 @@ namespace JobsCatalogApi.Controllers
         }
 
         [HttpGet("programmingLanguages")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<ProgrammingLanguageVm>>> GetProgrammingLanguages()
         {
             var vm = await Mediator.Send(new ProgrammingLanguageQuery());
@@ -30,6 +37,9 @@ namespace JobsCatalogApi.Controllers
         }
 
         [HttpGet("technologies")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TechnologyVm>> GetTechnologies()
         {
             var vm = await Mediator.Send(new TechnologyQuery());
