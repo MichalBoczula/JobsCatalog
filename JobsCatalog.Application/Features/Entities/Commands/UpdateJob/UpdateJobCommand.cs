@@ -10,5 +10,6 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
    public class UpdateJobCommand : IRequest<int>
     {
         public UpdateJobVm Model { get; set; }
+        public int Id { get; set; }
     }
 }

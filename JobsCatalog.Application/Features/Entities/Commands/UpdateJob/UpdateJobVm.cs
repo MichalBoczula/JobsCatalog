@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using JobsCatalog.Application.Mapping;
+using JobsCatalog.Domain.Entities;
+using System.Collections.Generic;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
 {
-    public class UpdateJobVm
+    public class UpdateJobVm : IMapFrom<JobOffer>
     {
-        public int Id { get; set; }
         public string PositionName { get; set; }
         public int SalaryMin { get; set; }
         public int SalaryMax { get; set; }
@@ -12,5 +14,10 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
         public int ExperienceLevelId { get; set; }
         public int CompanyId { get; set; }
         public int ProgrammingLanguageId { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<UpdateJobVm, JobOffer>();
+        }
     }
 }

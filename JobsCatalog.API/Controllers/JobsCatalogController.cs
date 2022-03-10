@@ -1,4 +1,5 @@
 ﻿using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
+using JobsCatalog.Application.Features.Entities.Commands.UpdateJob;
 using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
 using JobsCatalog.Application.Features.Entities.Queries.JobsList;
 using JobsCatalogApi.Common;
@@ -51,9 +52,10 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> UpdateJob(int id, [FromBody] AddNewJobVm model)
+        public async Task<ActionResult> UpdateJob(int id, [FromBody] UpdateJobVm model)
         {
-            throw new NotImplementedException();
+            var vm = await Mediator.Send(new UpdateJobCommand() { Model = model, Id = id });
+            return NoContent();
         }
 
         [HttpPut("{id}/jobList/update")]
