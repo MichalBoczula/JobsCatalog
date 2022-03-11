@@ -15,17 +15,17 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
         public AddNewJobCommandValidator(IJobsCatalogDbContext dbContext)
         {
             _dbcontext = dbContext;
-            RuleFor(x => x.Model.PositionName).NotEmpty();
-            RuleFor(x => x.Model.SalaryMin).GreaterThanOrEqualTo(2800);
-            RuleFor(x => x.Model).Custom((model, context) =>
+            RuleFor(x => x.Model.JobOffer.PositionName).NotEmpty();
+            RuleFor(x => x.Model.JobOffer.SalaryMin).GreaterThanOrEqualTo(2800);
+            RuleFor(x => x.Model.JobOffer).Custom((model, context) =>
             {
                 if (model.SalaryMin > model.SalaryMax)
                 {
                     context.AddFailure("SalaryMax has to be bigger than SalaryMin");
                 }
             });
-            RuleFor(x => x.Model.City).NotEmpty();
-            RuleFor(x => x.Model.ExperienceLevelId).Custom((expId, context) =>
+            RuleFor(x => x.Model.JobOffer.City).NotEmpty();
+            RuleFor(x => x.Model.JobOffer.ExperienceLevelId).Custom((expId, context) =>
             {
                 var ele = _dbcontext.ExperienceLeves
                     .SingleOrDefault(x => x.Id == expId);
@@ -34,7 +34,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                     context.AddFailure("ExperienceLevel has to exist in dictionary");
                 }
             });
-            RuleFor(x => x.Model.CompanyId).Custom((comId, context) =>
+            RuleFor(x => x.Model.JobOffer.CompanyId).Custom((comId, context) =>
             {
                 var ele = _dbcontext.Companies
                     .SingleOrDefault(x => x.Id == comId);
@@ -43,7 +43,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                     context.AddFailure("Company has to exists in dataBase");
                 }
             });
-            RuleFor(x => x.Model.ProgrammingLanguageId).Custom((plId, context) =>
+            RuleFor(x => x.Model.JobOffer.ProgrammingLanguageId).Custom((plId, context) =>
             {
                 var ele = _dbcontext.ProgrammingLanguages
                     .SingleOrDefault(x => x.Id == plId);
@@ -52,10 +52,10 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                     context.AddFailure("ProgrammingLanguage has to exist in dictionary");
                 }
             });
-            RuleFor(x => x.Model.About).NotEmpty();
-            RuleFor(x => x.Model.Responsibilities).NotEmpty();
-            RuleFor(x => x.Model.Expectation).NotEmpty();
-            RuleFor(x => x.Model.Offer).NotEmpty();
+            RuleFor(x => x.Model.JobDescritpion.About).NotEmpty();
+            RuleFor(x => x.Model.JobDescritpion.Responsibilities).NotEmpty();
+            RuleFor(x => x.Model.JobDescritpion.Expectation).NotEmpty();
+            RuleFor(x => x.Model.JobDescritpion.Offer).NotEmpty();
             RuleFor(x => x.Model.Technologies.Count).GreaterThan(0);
             RuleFor(x => x.Model.Technologies).Custom((list, context) =>
             {

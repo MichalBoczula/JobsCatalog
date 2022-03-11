@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JobsCatalog.Test.Common
+namespace JobsCatalog.UnitTests.Common.DbContext
 {
     public static class DbContexFactory
     {

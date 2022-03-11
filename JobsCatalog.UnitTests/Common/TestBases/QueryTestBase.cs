@@ -1,10 +1,11 @@
 ﻿using JobsCatalog.Persistance.Context;
+using JobsCatalog.UnitTests.Common.DbContext;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace JobsCatalog.Test.Common
+namespace JobsCatalog.UnitTests.Common.TestBases
 {
     public class QueryTestBase : IDisposable
     {

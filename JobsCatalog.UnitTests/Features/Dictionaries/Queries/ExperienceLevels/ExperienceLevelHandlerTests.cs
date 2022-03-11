@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using JobsCatalog.Application.Features.Dictionaries.Queries.ExperienceLevels;
 using JobsCatalog.Persistance.Context;
-using JobsCatalog.Test.Common;
+using JobsCatalog.UnitTests.Common.TestBases;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;

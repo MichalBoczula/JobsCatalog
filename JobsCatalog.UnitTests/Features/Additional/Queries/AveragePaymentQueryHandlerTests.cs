@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using JobsCatalog.Persistance.Context;
-using JobsCatalog.Test.Common;
+using JobsCatalog.UnitTests.Common.TestBases;
 using System;
 using System.Collections.Generic;
 using System.Linq;

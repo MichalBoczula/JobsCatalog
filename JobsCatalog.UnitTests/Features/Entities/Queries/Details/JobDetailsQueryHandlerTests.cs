@@ -2,7 +2,7 @@
 using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
 using JobsCatalog.Domain.Entities;
 using JobsCatalog.Persistance.Context;
-using JobsCatalog.Test.Common;
+using JobsCatalog.UnitTests.Common.TestBases;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

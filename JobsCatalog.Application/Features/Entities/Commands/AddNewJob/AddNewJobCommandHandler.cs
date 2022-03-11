@@ -1,4 +1,5 @@
-﻿using JobsCatalog.Application.Contracts.Persistance;
+﻿using AutoMapper;
+using JobsCatalog.Application.Contracts.Persistance;
 using JobsCatalog.Application.Features.Entities.Commands;
 using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
 using JobsCatalog.Domain.Entities;
@@ -16,10 +17,12 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
     public class AddNewJobCommandHandler : IRequestHandler<AddNewJobCommand, int>
     {
         private readonly IJobsCatalogDbContext _context;
+        private readonly IMapper _mapper;
 
-        public AddNewJobCommandHandler(IJobsCatalogDbContext context)
+        public AddNewJobCommandHandler(IJobsCatalogDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<int> Handle(AddNewJobCommand request, CancellationToken cancellationToken)
@@ -31,32 +34,13 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                     await _context.BeginTransaction();
                 }
 
-                var jobOffer = new JobOffer
-                {
-                    PositionName = request.Model.PositionName,
-                    SalaryMin = request.Model.SalaryMin,
-                    SalaryMax = request.Model.SalaryMax,
-                    City = request.Model.City,
-                    ExperienceLevelId = request.Model.ExperienceLevelId,
-                    CompanyId = request.Model.CompanyId,
-                    ProgrammingLanguageId = request.Model.ProgrammingLanguageId
-                };
-                
+                var jobOffer = _mapper.Map<JobOffer>(request.Model.JobOffer);
+                    
                 _context.JobOffers.Add(jobOffer);
-                
                 await _context.SaveChangesAsync(cancellationToken);
 
-                _context.JobDescriptions.Add(
-                    new JobDescription()
-                    {
-                        JobOfferId = jobOffer.Id,
-                        About = request.Model.About,
-                        Responsibilities = request.Model.Responsibilities,
-                        Expectation = request.Model.Expectation,
-                        Offer = request.Model.Offer
-                    });
-
-                await _context.SaveChangesAsync(cancellationToken);
+                var jobDescription = _mapper.Map<JobDescription>(request.Model.JobDescritpion);
+                jobDescription.JobOfferId = jobOffer.Id;
 
                 var technologies = request.Model.Technologies
                     .Select(x => new JobOfferTechnology
@@ -65,7 +49,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                         TechnologyId = x
                     }).ToList();
 
+                _context.JobDescriptions.Add(jobDescription);
                 _context.JobOfferTechnologies.AddRange(technologies);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 if (request.IsProductionMode)
                 {
