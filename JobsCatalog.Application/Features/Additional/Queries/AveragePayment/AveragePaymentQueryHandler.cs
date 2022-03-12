@@ -26,8 +26,7 @@ namespace JobsCatalog.Application.Features.Additional.Queries.AveragePayment
                     jo => jo.ExperienceLevelId,
                     el => el.Id,
                     (jo, el) => new { el.Name, jo });
-            var raaa = request.ExperienceLevelName;
-            var raaa2 = request.ExperienceLevelName.ToLower();
+
             if (request.ExperienceLevelName.ToLower().Trim() != "all")
             {
                 q1 = q1.Where(x => x.Name.ToLower() == request.ExperienceLevelName.ToLower().Trim());

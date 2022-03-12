@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.UnitTests.Features.Entities.Commands.AddNewJob
+namespace JobsCatalog.UnitTests.Features.Entities.Commands.UpdateJob
 {
     [Collection("CommandCollection")]
     public class UpdateJobCommandHandlerTests
@@ -29,6 +29,7 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.AddNewJob
         [Fact]
         public async Task ShouldUpdateJob()
         {
+            var jobBeforeUpdate = _context.JobOffers.SingleOrDefault(x => x.Id == 1);
             var handler = new UpdateJobCommandHandler(_context, _mapper);
             var result = await handler.Handle(
                 new UpdateJobCommand

@@ -59,6 +59,7 @@ namespace JobsCatalog.Persistance.Context
                     case EntityState.Modified:
                         entry.Entity.ModifiedBy = "Admin";
                         entry.Entity.Modified = DateTimeOffset.Now;
+                        entry.Entity.StatusId = 1;
                         break;
                     case EntityState.Deleted:
                         entry.Entity.ModifiedBy = "Admin";

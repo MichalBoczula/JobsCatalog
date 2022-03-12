@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Entities\Commands\DeleteJob\" />
+    <Folder Include="Features\Entities\Commands\UpdateJobTechnologies\" />
   </ItemGroup>
 
 </Project>
