@@ -17,11 +17,11 @@ namespace JobsCatalog.UnitTests.Features.Dictionaries.Queries.ExperienceLevels
     [Collection("QueryCollection")]
     public class ExperienceLevelHandlerTests
     {
-        private readonly JobsCatalogDbContextTransaction _context;
+        private readonly JobsCatalogDbContext _context;
 
         public ExperienceLevelHandlerTests(QueryTestBase testBase)
         {
-            _context = testBase.ContextTransaction;
+            _context = testBase.Context;
         }
 
         [Fact]

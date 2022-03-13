@@ -13,10 +13,10 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
 {
     public class UpdateJobCommandHandler : IRequestHandler<UpdateJobCommand, int>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
         private readonly IMapper _mapper;
 
-        public UpdateJobCommandHandler(IJobsCatalogDbContextTransaction context, IMapper mapper)
+        public UpdateJobCommandHandler(IJobsCatalogDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

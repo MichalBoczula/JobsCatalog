@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology
 {
     public class DeleteTechnologyCommandHandler : IRequestHandler<DeleteTechnologyCommand, int>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
 
-        public DeleteTechnologyCommandHandler(IJobsCatalogDbContextTransaction context)
+        public DeleteTechnologyCommandHandler(IJobsCatalogDbContext context)
         {
             _context = context;
         }
@@ -22,16 +22,10 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology
         public async Task<int> Handle(DeleteTechnologyCommand request, CancellationToken cancellationToken)
         {
             var techsToRemove = request.Technologies
-                .Distinct()
-                .Join(_context.JobOfferTechnologies,
-                tId => tId,
-                jt => jt.TechnologyId,
-                (tId, jt) => new { tId, jt.JobOfferId})
-                .Where(x => x.JobOfferId == request.JobOfferId)
                 .Select(x => new JobOfferTechnology
                 {
                     JobOfferId = request.JobOfferId,
-                    TechnologyId = x.tId
+                    TechnologyId = x
                 }).ToList();
             _context.JobOfferTechnologies.RemoveRange(techsToRemove);
             var result = await _context.SaveChangesAsync(cancellationToken);

@@ -16,10 +16,10 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
 {
     public class AddNewJobCommandHandler : IRequestHandler<AddNewJobCommand, int>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
         private readonly IMapper _mapper;
 
-        public AddNewJobCommandHandler(IJobsCatalogDbContextTransaction context, IMapper mapper)
+        public AddNewJobCommandHandler(IJobsCatalogDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -33,7 +33,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                 {
                     await _context.BeginTransaction();
                 }
-
+               
                 var jobOffer = _mapper.Map<JobOffer>(request.Model.JobOffer);
                     
                 _context.JobOffers.Add(jobOffer);

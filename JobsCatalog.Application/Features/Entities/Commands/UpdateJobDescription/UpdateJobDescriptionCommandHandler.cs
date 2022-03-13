@@ -14,9 +14,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescriptio
 {
     public class UpdateJobDescriptionCommandHandler : IRequestHandler<UpdateJobDescriptionCommand, int>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
 
-        public UpdateJobDescriptionCommandHandler(IJobsCatalogDbContextTransaction context)
+        public UpdateJobDescriptionCommandHandler(IJobsCatalogDbContext context)
         {
             _context = context;
         }

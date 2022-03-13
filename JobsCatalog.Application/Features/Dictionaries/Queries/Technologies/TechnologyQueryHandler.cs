@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Dictionaries.Queries.Technologies
 {
     public class TechnologyQueryHandler : IRequestHandler<TechnologyQuery, List<TechnologyVm>>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
         
-        public TechnologyQueryHandler(IJobsCatalogDbContextTransaction context)
+        public TechnologyQueryHandler(IJobsCatalogDbContext context)
         {
             _context = context;
         }

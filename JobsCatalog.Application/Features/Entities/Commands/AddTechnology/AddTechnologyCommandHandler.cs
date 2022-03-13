@@ -13,9 +13,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddTechnology
 {
     public class AddTechnologyCommandHandler : IRequestHandler<AddTechnologyCommand, List<int>>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
 
-        public AddTechnologyCommandHandler(IJobsCatalogDbContextTransaction context)
+        public AddTechnologyCommandHandler(IJobsCatalogDbContext context)
         {
             _context = context;
         }

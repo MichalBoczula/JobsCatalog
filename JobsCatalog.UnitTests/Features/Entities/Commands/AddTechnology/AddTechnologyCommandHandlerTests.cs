@@ -16,11 +16,11 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.AddTechnology
     [Collection("CommandCollection")]
     public class AddTechnologyCommandHandlerTests
     {
-        private readonly JobsCatalogDbContextTransaction _context;
+        private readonly JobsCatalogDbContext _context;
 
         public AddTechnologyCommandHandlerTests(CommandTestBase testBase)
         {
-            _context = testBase.ContextTransaction;
+            _context = testBase.Context;
         }
 
         [Fact]

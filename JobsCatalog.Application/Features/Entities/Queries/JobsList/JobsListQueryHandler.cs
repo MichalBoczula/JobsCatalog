@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
 {
     public class JobsListQueryHandler : IRequestHandler<JobsListQuery, List<JobsListVm>>
     {
-        private readonly IJobsCatalogDbContextTransaction _context;
+        private readonly IJobsCatalogDbContext _context;
 
-        public JobsListQueryHandler(IJobsCatalogDbContextTransaction context)
+        public JobsListQueryHandler(IJobsCatalogDbContext context)
         {
             _context = context;
         }

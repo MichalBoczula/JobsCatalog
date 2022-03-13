@@ -15,15 +15,11 @@ namespace JobsCatalog.Persistance.DependencyInjection
     {
         public static IServiceCollection AddPersistance(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<JobsCatalogDbContextTransaction>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("Production")));
-            services.AddDbContext<JobsCatalogDbContextQuery>(options =>
+            services.AddDbContext<JobsCatalogDbContext>(options =>
             {
-                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 options.UseSqlServer(configuration.GetConnectionString("Production"));
             });
-            services.AddScoped<IJobsCatalogDbContextTransaction, JobsCatalogDbContextTransaction>();
-            services.AddScoped<IJobsCatalogDbContextQuery, JobsCatalogDbContextQuery>();
+            services.AddScoped<IJobsCatalogDbContext, JobsCatalogDbContext>();
             return services;
         }
     }

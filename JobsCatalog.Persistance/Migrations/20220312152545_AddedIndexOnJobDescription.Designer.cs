@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobsCatalog.Persistance.Migrations
 {
-    [DbContext(typeof(JobsCatalogDbContextTransaction))]
+    [DbContext(typeof(JobsCatalogDbContext))]
     [Migration("20220312152545_AddedIndexOnJobDescription")]
     partial class AddedIndexOnJobDescription
     {

@@ -13,14 +13,12 @@ namespace JobsCatalog.UnitTests.Common.TestBases
 {
     public class CommandTestBase : IDisposable
     {
-        public JobsCatalogDbContextTransaction ContextTransaction { get; set; }
-        public JobsCatalogDbContextQuery ContextQuery { get; set; }
+        public JobsCatalogDbContext Context { get; set; }
         public IMapper Mapper { get; private set; }
 
         public CommandTestBase()
         {
-            ContextTransaction = DbContexFactory.CreateTransactionDbContext().Object;
-            ContextQuery = DbContexFactory.CreateQueryDbContext().Object;
+            Context = DbContexFactory.CreateDbContext().Object;
 
             var configurationProvider = new MapperConfiguration(cfg =>
             {
@@ -32,7 +30,7 @@ namespace JobsCatalog.UnitTests.Common.TestBases
 
         public void Dispose()
         {
-            DbContexFactory.CleanUp(ContextTransaction, ContextQuery);
+            DbContexFactory.CleanUp(Context);
         }
     }
 

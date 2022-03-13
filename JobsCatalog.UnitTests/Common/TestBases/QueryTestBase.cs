@@ -9,18 +9,16 @@ namespace JobsCatalog.UnitTests.Common.TestBases
 {
     public class QueryTestBase : IDisposable
     {
-        public JobsCatalogDbContextTransaction ContextTransaction { get; set; }
-        public JobsCatalogDbContextQuery ContextQuery { get; set; }
+        public JobsCatalogDbContext Context { get; set; }
 
         public QueryTestBase()
         {
-            ContextTransaction = DbContexFactory.CreateTransactionDbContext().Object;
-            ContextQuery = DbContexFactory.CreateQueryDbContext().Object;
+            Context = DbContexFactory.CreateDbContext().Object;
         }
 
         public void Dispose()
         {
-            DbContexFactory.CleanUp(ContextTransaction, ContextQuery);
+            DbContexFactory.CleanUp(Context);
         }
     }
 
