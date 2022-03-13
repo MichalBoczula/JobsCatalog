@@ -10,9 +10,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
 {
     public class AddNewJobCommandValidator : AbstractValidator<AddNewJobCommand>
     {
-        private readonly IJobsCatalogDbContext _dbcontext;
+        private readonly IJobsCatalogDbContextTransaction _dbcontext;
 
-        public AddNewJobCommandValidator(IJobsCatalogDbContext dbContext)
+        public AddNewJobCommandValidator(IJobsCatalogDbContextTransaction dbContext)
         {
             _dbcontext = dbContext;
             RuleFor(x => x.Model.JobOffer.PositionName).NotEmpty();

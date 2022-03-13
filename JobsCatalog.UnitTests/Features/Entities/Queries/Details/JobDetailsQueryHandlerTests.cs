@@ -17,11 +17,11 @@ namespace JobsCatalog.UnitTests.Features.Entities.Queries.Details
     [Collection("QueryCollection")]
     public class JobDetailsQueryHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
 
         public JobDetailsQueryHandlerTests(QueryTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
         }
 
         [Fact]

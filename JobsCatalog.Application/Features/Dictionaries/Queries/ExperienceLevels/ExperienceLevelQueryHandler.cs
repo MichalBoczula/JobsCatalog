@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Dictionaries.Queries.ExperienceLevels
 {
     public class ExperienceLevelQueryHandler : IRequestHandler<ExperienceLevelQuery, List<ExperienceLevelVm>>
     {
-        private readonly IJobsCatalogDbContext _context;
+        private readonly IJobsCatalogDbContextTransaction _context;
 
-        public ExperienceLevelQueryHandler(IJobsCatalogDbContext context)
+        public ExperienceLevelQueryHandler(IJobsCatalogDbContextTransaction context)
         {
             _context = context;
         }

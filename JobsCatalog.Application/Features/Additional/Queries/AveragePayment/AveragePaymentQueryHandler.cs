@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Additional.Queries.AveragePayment
 {
     public class AveragePaymentQueryHandler : IRequestHandler<AveragePaymentQuery, AveragePaymentVm>
     {
-        private readonly IJobsCatalogDbContext _context;
+        private readonly IJobsCatalogDbContextTransaction _context;
 
-        public AveragePaymentQueryHandler(IJobsCatalogDbContext context)
+        public AveragePaymentQueryHandler(IJobsCatalogDbContextTransaction context)
         {
             _context = context;
         }

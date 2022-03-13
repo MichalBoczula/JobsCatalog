@@ -13,9 +13,9 @@ namespace JobsCatalog.Application.Features.Dictionaries.Queries.ProgrammingLangu
 
     public class ProgrammingLanguageQueryHandler : IRequestHandler<ProgrammingLanguageQuery, List<ProgrammingLanguageVm>>
     {
-        private readonly IJobsCatalogDbContext _context;
+        private readonly IJobsCatalogDbContextTransaction _context;
 
-        public ProgrammingLanguageQueryHandler(IJobsCatalogDbContext context)
+        public ProgrammingLanguageQueryHandler(IJobsCatalogDbContextTransaction context)
         {
             _context = context;
         }

@@ -14,11 +14,11 @@ namespace JobsCatalog.Application.Features.Additional.Queries.AveragePayment
     [Collection("QueryCollection")]
     public class AveragePaymentQueryHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
 
         public AveragePaymentQueryHandlerTests(QueryTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
         }
 
         [Fact]

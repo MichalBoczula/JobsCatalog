@@ -9,20 +9,32 @@ namespace JobsCatalog.UnitTests.Common.DbContext
 {
     public static class DbContexFactory
     {
-        public static Mock<JobsCatalogDbContext> Create()
+        public static Mock<JobsCatalogDbContextTransaction> CreateTransactionDbContext()
         {
-            var options = new DbContextOptionsBuilder<JobsCatalogDbContext>()
+            var options = new DbContextOptionsBuilder<JobsCatalogDbContextTransaction>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var mock = new Mock<JobsCatalogDbContext>(options) { CallBase = true };
+            var mock = new Mock<JobsCatalogDbContextTransaction>(options) { CallBase = true };
             mock.Object.Database.EnsureCreated();
             mock.Object.SaveChanges();
             return mock;
         }
 
-        public static void CleanUp(JobsCatalogDbContext context)
+        public static Mock<JobsCatalogDbContextQuery> CreateQueryDbContext()
         {
-            context.Database.EnsureDeleted();
-            context.Dispose();
+            var options = new DbContextOptionsBuilder<JobsCatalogDbContextQuery>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            var mock = new Mock<JobsCatalogDbContextQuery>(options) { CallBase = true };
+            mock.Object.Database.EnsureCreated();
+            mock.Object.SaveChanges();
+            return mock;
+        }
+
+        public static void CleanUp(JobsCatalogDbContextTransaction contextTransaction, JobsCatalogDbContextQuery contextQuery)
+        {
+            contextTransaction.Database.EnsureDeleted();
+            contextQuery.Database.EnsureDeleted();
+            contextQuery.Dispose();
+            contextTransaction.Dispose();
         }
     }
 }

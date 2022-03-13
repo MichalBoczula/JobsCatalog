@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobsCatalog.Persistance.Migrations
 {
-    [DbContext(typeof(JobsCatalogDbContext))]
+    [DbContext(typeof(JobsCatalogDbContextTransaction))]
     partial class JobsCatalogDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

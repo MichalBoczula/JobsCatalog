@@ -18,11 +18,11 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.UpdateJobDescription
     [Collection("CommandCollection")]
     public class UpdateJobDescriptionCommandHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
 
         public UpdateJobDescriptionCommandHandlerTests(CommandTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
         }
 
         [Fact]

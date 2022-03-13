@@ -17,19 +17,18 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.UpdateJob
     [Collection("CommandCollection")]
     public class UpdateJobCommandHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
         private readonly IMapper _mapper;
 
         public UpdateJobCommandHandlerTests(CommandTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
             _mapper = testBase.Mapper;
         }
 
         [Fact]
         public async Task ShouldUpdateJob()
         {
-            var jobBeforeUpdate = _context.JobOffers.SingleOrDefault(x => x.Id == 1);
             var handler = new UpdateJobCommandHandler(_context, _mapper);
             var result = await handler.Handle(
                 new UpdateJobCommand

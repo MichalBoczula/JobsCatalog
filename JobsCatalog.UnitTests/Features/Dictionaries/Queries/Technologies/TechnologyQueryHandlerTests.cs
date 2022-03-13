@@ -15,11 +15,11 @@ namespace JobsCatalog.UnitTests.Features.Dictionaries.Queries.Technologies
     [Collection("QueryCollection")]
     public class TechnologyQueryHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
 
         public TechnologyQueryHandlerTests(QueryTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
         }
 
         [Fact]

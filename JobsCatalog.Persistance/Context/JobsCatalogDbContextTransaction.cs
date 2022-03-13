@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Persistance.Context
 {
-    public class JobsCatalogDbContext : DbContext, IJobsCatalogDbContext
+    public class JobsCatalogDbContextTransaction : DbContext, IJobsCatalogDbContextTransaction
     {
         public DbSet<ExperienceLevel> ExperienceLeves { get; set; }
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
@@ -29,7 +29,7 @@ namespace JobsCatalog.Persistance.Context
         public DbSet<JobOfferTechnology> JobOfferTechnologies { get; set; }
         private IDbContextTransaction _transaction;
 
-        public JobsCatalogDbContext([NotNull] DbContextOptions<JobsCatalogDbContext> options) : base(options)
+        public JobsCatalogDbContextTransaction([NotNull] DbContextOptions<JobsCatalogDbContextTransaction> options) : base(options)
         {
         }
 

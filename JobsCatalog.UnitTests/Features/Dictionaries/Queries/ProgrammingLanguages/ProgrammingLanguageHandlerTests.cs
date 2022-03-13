@@ -15,11 +15,11 @@ namespace JobsCatalog.UnitTests.Features.Dictionaries.Queries.ProgrammingLanguag
     [Collection("QueryCollection")]
     public class ProgrammingLanguageHandlerTests
     {
-        private readonly JobsCatalogDbContext _context;
+        private readonly JobsCatalogDbContextTransaction _context;
 
         public ProgrammingLanguageHandlerTests(QueryTestBase testBase)
         {
-            _context = testBase.Context;
+            _context = testBase.ContextTransaction;
         }
 
         [Fact]

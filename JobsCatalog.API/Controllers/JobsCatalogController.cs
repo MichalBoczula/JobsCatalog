@@ -1,5 +1,7 @@
 ﻿using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
+using JobsCatalog.Application.Features.Entities.Commands.AddTechnology;
 using JobsCatalog.Application.Features.Entities.Commands.UpdateJob;
+using JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescription;
 using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
 using JobsCatalog.Application.Features.Entities.Queries.JobsList;
 using JobsCatalogApi.Common;
@@ -34,35 +36,35 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetJobDetails(int id)
         {
-            var vm = await Mediator.Send(new JobDetailsQuery() { Id = id});
-            return vm is null? NotFound() : Ok(vm);
+            var vm = await Mediator.Send(new JobDetailsQuery() { Id = id });
+            return vm is null ? NotFound() : Ok(vm);
         }
 
         [HttpPost("add")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> CreateJob([FromBody] AddNewJobVm model) 
+        public async Task<ActionResult> CreateJob([FromBody] AddNewJobVm model)
         {
             var vm = await Mediator.Send(new AddNewJobCommand() { Model = model });
-            return CreatedAtAction(nameof(GetJobDetails), new { id = vm}, new { id = vm });
+            return CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
         }
 
-        [HttpPut("{id}/update")]
+        [HttpPut("{id}/jobOffer/update")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateJob(int id, [FromBody] UpdateJobVm model)
         {
             var vm = await Mediator.Send(new UpdateJobCommand() { Model = model, Id = id });
-            return NoContent();
+            return vm == 1 ? NoContent() : BadRequest();
         }
 
-        [HttpPut("{id}/jobList/update")]
+        [HttpDelete("{id}/jobOffer/delete")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> UpdateJobList(int id, [FromBody] AddNewJobVm model)
+        public async Task<ActionResult> DeleteJobOffer(int id)
         {
             throw new NotImplementedException();
         }
@@ -71,7 +73,27 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> UpdateJobdescription(int id, [FromBody] AddNewJobVm model)
+        public async Task<ActionResult> UpdateJobDescription(int id, [FromBody] UpdateJobDescriptionVm model)
+        {
+            var vm = await Mediator.Send(new UpdateJobDescriptionCommand() { Model = model, JobOfferId = id });
+            return vm == 1 ? NoContent() : BadRequest();
+        }
+
+        [HttpPost("{id}/technology/add")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> AddTechnology(int id, [FromBody] List<int> technologies)
+        {
+            var vm = await Mediator.Send(new AddTechnologyCommand() { Technologies = technologies, JobOfferId = id });
+            return vm == null ? BadRequest() : NoContent();
+        }
+
+        [HttpDelete("{id}/technology/delete")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteTechnology(int id, [FromBody] List<int> technologies)
         {
             throw new NotImplementedException();
         }

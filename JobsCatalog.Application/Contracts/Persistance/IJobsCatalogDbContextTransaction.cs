@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Contracts.Persistance
 {
-    public interface IJobsCatalogDbContext
+    public interface IJobsCatalogDbContextTransaction
     {
         DbSet<ExperienceLevel> ExperienceLeves { get; set; }
         DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }

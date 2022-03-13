@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobDetails
 {
     public class JobDetailsQueryHandler : IRequestHandler<JobDetailsQuery, JobDetailsVm>
     {
-        private readonly IJobsCatalogDbContext _context;
+        private readonly IJobsCatalogDbContextTransaction _context;
 
-        public JobDetailsQueryHandler(IJobsCatalogDbContext context)
+        public JobDetailsQueryHandler(IJobsCatalogDbContextTransaction context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobDetails
                     (x, t) => t.Name);
 
             var vm = await _context.JobOffers
-                .Where(jo => jo.Id == request.Id)
+                .Where(jo => jo.Id == request.Id && jo.StatusId == 1)
                 .Join(_context.Companies,
                     jo => jo.CompanyId,
                     c => c.Id,

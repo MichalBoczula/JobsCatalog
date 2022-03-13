@@ -12,9 +12,9 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
 {
     public class JobsListQueryHandler : IRequestHandler<JobsListQuery, List<JobsListVm>>
     {
-        private readonly IJobsCatalogDbContext _context;
+        private readonly IJobsCatalogDbContextTransaction _context;
 
-        public JobsListQueryHandler(IJobsCatalogDbContext context)
+        public JobsListQueryHandler(IJobsCatalogDbContextTransaction context)
         {
             _context = context;
         }
@@ -30,6 +30,7 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
                     x => x.Jobs.ProgrammingLanguageId,
                     pl => pl.Id,
                     (x, pl) => new { x.Jobs, x.Company, ProgrammingLanguage = pl })
+                .Where(x => x.Jobs.StatusId == 1)
                 .Select(x => new JobsListVm()
                 {
                     Id = x.Jobs.Id,
