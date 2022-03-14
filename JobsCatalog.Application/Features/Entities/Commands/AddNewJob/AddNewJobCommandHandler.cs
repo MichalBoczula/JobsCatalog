@@ -65,7 +65,6 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
                 await _context.RollbackTransaction(cancellationToken);
                 return -1;
             }
-
         }
     }
 }

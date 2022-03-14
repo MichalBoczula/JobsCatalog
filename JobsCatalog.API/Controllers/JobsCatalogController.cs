@@ -1,5 +1,7 @@
 ﻿using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
 using JobsCatalog.Application.Features.Entities.Commands.AddTechnology;
+using JobsCatalog.Application.Features.Entities.Commands.DeleteJob;
+using JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology;
 using JobsCatalog.Application.Features.Entities.Commands.UpdateJob;
 using JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescription;
 using JobsCatalog.Application.Features.Entities.Queries.JobDetails;
@@ -66,7 +68,8 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteJobOffer(int id)
         {
-            throw new NotImplementedException();
+            var vm = await Mediator.Send(new DeleteJobCommand() { Id = id });
+            return vm == 0 ? NoContent() : BadRequest();
         }
 
         [HttpPut("{id}/jobDescription/update")]
@@ -79,7 +82,7 @@ namespace JobsCatalogApi.Controllers
             return vm == 1 ? NoContent() : BadRequest();
         }
 
-        [HttpPost("{id}/technology/add")]
+        [HttpPost("{id}/technologies/add")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -89,13 +92,14 @@ namespace JobsCatalogApi.Controllers
             return vm == null ? BadRequest() : NoContent();
         }
 
-        [HttpDelete("{id}/technology/delete")]
+        [HttpDelete("{id}/technologies/delete")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteTechnology(int id, [FromBody] List<int> technologies)
         {
-            throw new NotImplementedException();
+            var vm = await Mediator.Send(new DeleteTechnologyCommand() { Technologies = technologies, JobOfferId = id });
+            return vm == 0 ? BadRequest() : NoContent();
         }
     }
 }
