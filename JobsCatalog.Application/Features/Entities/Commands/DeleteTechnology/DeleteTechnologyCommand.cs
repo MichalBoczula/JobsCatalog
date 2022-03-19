@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using JobsCatalog.Application.Contracts.Tags;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology
 {
-    public class DeleteTechnologyCommand : IRequest<int>
+    public class DeleteTechnologyCommand : IRequest<int>, ICommandTag
     {
         public List<int> Technologies{ get; set; }
         public int JobOfferId { get; set; }
