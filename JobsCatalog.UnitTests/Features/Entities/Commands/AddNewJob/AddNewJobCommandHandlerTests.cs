@@ -34,7 +34,6 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.AddNewJob
             var result = await handler.Handle(
                 new AddNewJobCommand
                 {
-                    IsProductionMode = false,
                     Model = new AddNewJobVm
                     {
                         JobOffer = new AddJob_JobOfferDto

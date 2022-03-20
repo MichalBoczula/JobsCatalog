@@ -23,13 +23,13 @@ namespace JobsCatalog.Application.Behaviors
         {
             if (request is ICommandTag)
             {
-                if (response is not null)
+                if (response is not null && _context.Transaction is not null)
                 {
-                    await _context.CommitTransaction(cancellationToken);
+                     _context.CommitTransaction(cancellationToken);
                 }
-                else
+                else if (response is null && _context.Transaction is not null)
                 {
-                    await _context.RollbackTransaction(cancellationToken);
+                    _context.RollbackTransaction(cancellationToken);
                 }
             }
         }

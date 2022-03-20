@@ -19,6 +19,8 @@ namespace JobsCatalog.Persistance.Configuration
             builder.HasOne(jot => jot.Technology)
                 .WithMany(t => t.JobOfferTechnology)
                 .HasForeignKey(jot => jot.TechnologyId);
+            builder.HasIndex(x => x.JobOfferId);
+            builder.HasIndex(x => x.TechnologyId);
         }
     }
 }

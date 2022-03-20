@@ -27,7 +27,7 @@ namespace JobsCatalog.Persistance.Context
         public DbSet<JobDescription> JobDescriptions { get; set; }
         public DbSet<JobOffer> JobOffers { get; set; }
         public DbSet<JobOfferTechnology> JobOfferTechnologies { get; set; }
-        private IDbContextTransaction _transaction;
+        public IDbContextTransaction Transaction { get; set; }
 
         public JobsCatalogDbContext([NotNull] DbContextOptions<JobsCatalogDbContext> options) : base(options)
         {
@@ -76,19 +76,19 @@ namespace JobsCatalog.Persistance.Context
 
         public async Task BeginTransaction()
         {
-            _transaction = await this.Database.BeginTransactionAsync();
+            Transaction = await this.Database.BeginTransactionAsync();
         }
 
         public async Task CommitTransaction(CancellationToken cancellationToken)
         {
-            await _transaction.CommitAsync(cancellationToken);
-            _transaction.Dispose();
+            await Transaction.CommitAsync(cancellationToken);
+            Transaction = null;
         }
         
         public async Task RollbackTransaction(CancellationToken cancellationToken)
         {
-            await _transaction.RollbackAsync(cancellationToken);
-            _transaction.Dispose();
+            await Transaction.RollbackAsync(cancellationToken);
+            Transaction = null;
         }
     }
 }

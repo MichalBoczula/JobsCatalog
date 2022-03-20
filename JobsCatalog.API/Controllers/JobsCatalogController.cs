@@ -22,9 +22,6 @@ namespace JobsCatalogApi.Controllers
     public class JobsCatalogController : BaseController
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetJobsList()
         {
             var vm = await Mediator.Send(new JobsListQuery());
@@ -33,9 +30,6 @@ namespace JobsCatalogApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetJobDetails(int id)
         {
             var vm = await Mediator.Send(new JobDetailsQuery() { Id = id });
@@ -43,9 +37,6 @@ namespace JobsCatalogApi.Controllers
         }
 
         [HttpPost("add")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> CreateJob([FromBody] AddNewJobVm model)
         {
             var vm = await Mediator.Send(new AddNewJobCommand() { Model = model });
@@ -53,53 +44,38 @@ namespace JobsCatalogApi.Controllers
         }
 
         [HttpPut("{id}/jobOffer/update")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateJob(int id, [FromBody] UpdateJobVm model)
         {
             var vm = await Mediator.Send(new UpdateJobCommand() { Model = model, Id = id });
-            return vm == 1 ? NoContent() : BadRequest();
+            return vm is not null ? NoContent() : BadRequest();
         }
 
         [HttpDelete("{id}/jobOffer/delete")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteJobOffer(int id)
         {
             var vm = await Mediator.Send(new DeleteJobCommand() { Id = id });
-            return vm == 0 ? NoContent() : BadRequest();
+            return vm is not null ? NoContent() : BadRequest();
         }
 
         [HttpPut("{id}/jobDescription/update")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateJobDescription(int id, [FromBody] UpdateJobDescriptionVm model)
         {
             var vm = await Mediator.Send(new UpdateJobDescriptionCommand() { Model = model, JobOfferId = id });
-            return vm == 1 ? NoContent() : BadRequest();
+            return vm is not null ? NoContent() : BadRequest();
         }
 
         [HttpPost("{id}/technologies/add")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> AddTechnology(int id, [FromBody] List<int> technologies)
         {
             var vm = await Mediator.Send(new AddTechnologyCommand() { Technologies = technologies, JobOfferId = id });
-            return vm == null ? BadRequest() : NoContent();
+            return vm is not null ? NoContent() : BadRequest();
         }
 
         [HttpDelete("{id}/technologies/delete")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteTechnology(int id, [FromBody] List<int> technologies)
         {
             var vm = await Mediator.Send(new DeleteTechnologyCommand() { Technologies = technologies, JobOfferId = id });
-            return vm == 0 ? BadRequest() : NoContent();
+            return vm is not null ? NoContent() : BadRequest();
         }
     }
 }

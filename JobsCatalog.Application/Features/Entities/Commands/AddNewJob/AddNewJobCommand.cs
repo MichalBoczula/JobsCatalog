@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
 {
-    public class AddNewJobCommand : IRequest<int>, ICommandTag
+    public class AddNewJobCommand : IRequest<int?>, ICommandTag
     {
         public AddNewJobVm Model { get; set; }
-        public bool IsProductionMode { get; set; } = true;
     }
 }

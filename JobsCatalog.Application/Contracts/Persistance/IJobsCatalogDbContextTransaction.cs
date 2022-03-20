@@ -2,6 +2,7 @@
 using JobsCatalog.Domain.Entities;
 using JobsCatalog.Domain.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace JobsCatalog.Application.Contracts.Persistance
         DbSet<JobDescription> JobDescriptions { get; set; }
         DbSet<JobOffer> JobOffers { get; set; }
         DbSet<JobOfferTechnology> JobOfferTechnologies { get; set; }
+        IDbContextTransaction Transaction { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         Task BeginTransaction();
         Task CommitTransaction(CancellationToken cancellationToken);

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescription
 {
-    public class UpdateJobDescriptionCommandHandler : IRequestHandler<UpdateJobDescriptionCommand, int>
+    public class UpdateJobDescriptionCommandHandler : IRequestHandler<UpdateJobDescriptionCommand, int?>
     {
         private readonly IJobsCatalogDbContext _context;
 
@@ -21,7 +21,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescriptio
             _context = context;
         }
 
-        public async Task<int> Handle(UpdateJobDescriptionCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(UpdateJobDescriptionCommand request, CancellationToken cancellationToken)
         {
             var jobDesc = _context.JobDescriptions
                 .SingleOrDefault(x => x.JobOfferId == request.JobOfferId);
@@ -31,7 +31,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescriptio
             jobDesc.Expectation = request.Model.Expectation;
             _context.JobDescriptions.Update(jobDesc);
             var result = await _context.SaveChangesAsync(cancellationToken);
-            return result;
+            return result > 0 ? result : null;
         }
     }
 }

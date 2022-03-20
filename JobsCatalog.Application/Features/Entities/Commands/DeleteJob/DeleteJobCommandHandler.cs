@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.DeleteJob
 {
-    public class DeleteJobCommandHandler : IRequestHandler<DeleteJobCommand, int>
+    public class DeleteJobCommandHandler : IRequestHandler<DeleteJobCommand, int?>
     {
         private readonly IJobsCatalogDbContext _context;
 
@@ -18,7 +18,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteJob
             _context = context;
         }
 
-        public async Task<int> Handle(DeleteJobCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(DeleteJobCommand request, CancellationToken cancellationToken)
         {
             var jobOffer = _context.JobOffers.SingleOrDefault(x => x.Id == request.Id);
             _context.JobOffers.Remove(jobOffer);
@@ -31,7 +31,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteJob
 
             var result = await _context.SaveChangesAsync(cancellationToken);
 
-            return result;
+            return result > 0 ? result : null;
         }
     }
 }

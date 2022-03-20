@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescription
 {
-    public class UpdateJobDescriptionCommand : IRequest<int>, ICommandTag
+    public class UpdateJobDescriptionCommand : IRequest<int?>, ICommandTag
     {
         public UpdateJobDescriptionVm Model { get; set; }
         public int JobOfferId { get; set; }

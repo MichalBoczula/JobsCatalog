@@ -31,17 +31,17 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobsList
                     pl => pl.Id,
                     (x, pl) => new { x.Jobs, x.Company, ProgrammingLanguage = pl })
                 .Where(x => x.Jobs.StatusId == 1)
-                .Select(x => new JobsListVm()
-                {
-                    Id = x.Jobs.Id,
-                    PositionName = x.Jobs.PositionName,
-                    SalaryMin = x.Jobs.SalaryMin,
-                    SalaryMax = x.Jobs.SalaryMax,
-                    City = x.Jobs.City,
-                    CompanyName = x.Company.Name,
-                    CompanyImage = x.Company.CompanyLogo,
-                    ProgrammingLanguageImage = x.ProgrammingLanguage.Image
-                });
+                 .Select(x => new JobsListVm()
+                 {
+                     Id = x.Jobs.Id,
+                     PositionName = x.Jobs.PositionName,
+                     SalaryMin = x.Jobs.SalaryMin,
+                     SalaryMax = x.Jobs.SalaryMax,
+                     City = x.Jobs.City,
+                     CompanyName = x.Company.Name,
+                     CompanyImage = x.Company.CompanyLogo,
+                     ProgrammingLanguageImage = x.ProgrammingLanguage.Image
+                 });
 
             return vm.ToListAsync(cancellationToken);
         }

@@ -14,7 +14,7 @@ using Xunit;
 
 namespace JobsCatalog.UnitTests.Features.Entities.Commands.UpdateJob
 {
-    [Collection("CommandCollection")]
+    [Collection("CommandCollection2")]
     public class UpdateJobCommandHandlerTests
     {
         private readonly JobsCatalogDbContext _context;

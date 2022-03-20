@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.DeleteJob
 {
-    public class DeleteJobCommand : IRequest<int>, ICommandTag
+    public class DeleteJobCommand : IRequest<int?>, ICommandTag
     {
         public int Id { get; set; }
     }

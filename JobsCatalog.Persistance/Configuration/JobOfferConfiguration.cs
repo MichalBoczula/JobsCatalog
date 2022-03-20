@@ -24,6 +24,9 @@ namespace JobsCatalog.Persistance.Configuration
             builder.HasOne(jo => jo.JobDescription)
                 .WithOne(jod => jod.JobOffer)
                 .HasForeignKey<JobDescription>(jd => jd.JobOfferId);
+            builder.HasIndex(x => x.ExperienceLevelId);
+            builder.HasIndex(x => x.CompanyId);
+            builder.HasIndex(x => x.ProgrammingLanguageId);
         }
     }
 }

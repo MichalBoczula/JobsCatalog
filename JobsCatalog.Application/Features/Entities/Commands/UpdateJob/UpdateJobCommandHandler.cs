@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
 {
-    public class UpdateJobCommandHandler : IRequestHandler<UpdateJobCommand, int>
+    public class UpdateJobCommandHandler : IRequestHandler<UpdateJobCommand, int?>
     {
         private readonly IJobsCatalogDbContext _context;
         private readonly IMapper _mapper;
@@ -22,13 +22,13 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(UpdateJobCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(UpdateJobCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<JobOffer>(request.Model);
             entity.Id = request.Id;
             _context.JobOffers.Update(entity);
             var result = await _context.SaveChangesAsync(cancellationToken);
-            return result;
+            return result > 0 ? result  : null;
         }
     }
 }

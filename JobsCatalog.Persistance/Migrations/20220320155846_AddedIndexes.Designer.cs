@@ -4,14 +4,16 @@ using JobsCatalog.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobsCatalog.Persistance.Migrations
 {
     [DbContext(typeof(JobsCatalogDbContext))]
-    partial class JobsCatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220320155846_AddedIndexes")]
+    partial class AddedIndexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

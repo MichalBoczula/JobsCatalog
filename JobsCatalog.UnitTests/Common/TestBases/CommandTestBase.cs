@@ -38,4 +38,14 @@ namespace JobsCatalog.UnitTests.Common.TestBases
     public class CommandCollection : ICollectionFixture<CommandTestBase>
     {
     }
+
+    [CollectionDefinition("CommandCollection2")]
+    public class CommandCollection2 : ICollectionFixture<CommandTestBase>
+    {
+    }
+
+    [CollectionDefinition("CommandCollection3")]
+    public class CommandCollection3 : ICollectionFixture<CommandTestBase>
+    {
+    }
 }

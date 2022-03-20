@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
 {
-    public class AddNewJobCommandHandler : IRequestHandler<AddNewJobCommand, int>
+    public class AddNewJobCommandHandler : IRequestHandler<AddNewJobCommand, int?>
     {
         private readonly IJobsCatalogDbContext _context;
         private readonly IMapper _mapper;
@@ -25,46 +25,28 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(AddNewJobCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(AddNewJobCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                if(request.IsProductionMode)
+            var jobOffer = _mapper.Map<JobOffer>(request.Model.JobOffer);
+
+            _context.JobOffers.Add(jobOffer);
+            var action1 = await _context.SaveChangesAsync(cancellationToken);
+
+            var jobDescription = _mapper.Map<JobDescription>(request.Model.JobDescritpion);
+            jobDescription.JobOfferId = jobOffer.Id;
+
+            var technologies = request.Model.Technologies
+                .Select(x => new JobOfferTechnology
                 {
-                    await _context.BeginTransaction();
-                }
-               
-                var jobOffer = _mapper.Map<JobOffer>(request.Model.JobOffer);
-                    
-                _context.JobOffers.Add(jobOffer);
-                await _context.SaveChangesAsync(cancellationToken);
+                    JobOfferId = jobOffer.Id,
+                    TechnologyId = x
+                }).ToList();
 
-                var jobDescription = _mapper.Map<JobDescription>(request.Model.JobDescritpion);
-                jobDescription.JobOfferId = jobOffer.Id;
+            _context.JobDescriptions.Add(jobDescription);
+            _context.JobOfferTechnologies.AddRange(technologies);
+            var action2 = await _context.SaveChangesAsync(cancellationToken);
 
-                var technologies = request.Model.Technologies
-                    .Select(x => new JobOfferTechnology
-                    {
-                        JobOfferId = jobOffer.Id,
-                        TechnologyId = x
-                    }).ToList();
-
-                _context.JobDescriptions.Add(jobDescription);
-                _context.JobOfferTechnologies.AddRange(technologies);
-                await _context.SaveChangesAsync(cancellationToken);
-
-                if (request.IsProductionMode)
-                {
-                    await _context.CommitTransaction(cancellationToken);
-                }
-
-                return jobOffer.Id;
-            }
-            catch
-            {
-                await _context.RollbackTransaction(cancellationToken);
-                return -1;
-            }
+            return action1 > 0 && action2 > 0 ? jobOffer.Id : null;
         }
     }
 }

@@ -64,7 +64,7 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobDetails
                     Offer = x.JobDescription.Offer,
                     Technologies = technologiesList.ToList()
                 })
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
 
             return vm;
         }
