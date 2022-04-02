@@ -48,10 +48,22 @@ namespace JobsCatalog.Application.Features.Entities.Queries.JobDetails
                         x.ProgrammingLanguage,
                         JobDescription = jd
                     })
+                .Join(_context.ExperienceLeves,
+                    x => x.Jobs.ExperienceLevelId,
+                    el => el.Id,
+                    (x, el) => new
+                    {
+                        x.Jobs,
+                        x.Company,
+                        x.ProgrammingLanguage,
+                        x.JobDescription,
+                        ExperienceLevel= el
+                    })
                 .Select(x => new JobDetailsVm()
                 {
                     Id = x.Jobs.Id,
                     PositionName = x.Jobs.PositionName,
+                    ExperienceLevel = x.ExperienceLevel.Name,
                     SalaryMin = x.Jobs.SalaryMin,
                     SalaryMax = x.Jobs.SalaryMax,
                     City = x.Jobs.City,

@@ -1,4 +1,6 @@
-﻿using JobsCatalog.Application.Features.Entities.Commands.AddNewJob;
+﻿using JobsCatalog.Application.Features.Entities.Commands.AddJobDesc;
+using JobsCatalog.Application.Features.Entities.Commands.AddJobOffer;
+using JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj;
 using JobsCatalog.Application.Features.Entities.Commands.AddTechnology;
 using JobsCatalog.Application.Features.Entities.Commands.DeleteJob;
 using JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology;
@@ -36,11 +38,25 @@ namespace JobsCatalogApi.Controllers
             return vm is null ? NotFound() : Ok(vm);
         }
 
-        [HttpPost("add")]
-        public async Task<ActionResult> CreateJob([FromBody] AddNewJobVm model)
+        [HttpPost("AddWholeJobObj")]
+        public async Task<ActionResult> CreateJobWithDescAndTechSet([FromBody] AddNewJobVm model)
         {
             var vm = await Mediator.Send(new AddNewJobCommand() { Model = model });
-            return CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
+            return vm is null ? BadRequest() : CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
+        }
+
+        [HttpPost("addJobOffer")]
+        public async Task<ActionResult> CreateJobOffer([FromBody] AddJobOfferDto model)
+        {
+            var vm = await Mediator.Send(new AddJobOfferCommand() { Model = model });
+            return vm is null ? BadRequest() : CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
+        }
+
+        [HttpPost("{id}/addJobDesc")]
+        public async Task<ActionResult> CreateJobDesc(int id, [FromBody] AddJobDescDto model)
+        {
+            var vm = await Mediator.Send(new AddJobDescCommand() { Model = model, JobOfferId = id});
+            return vm is null ? BadRequest() : CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
         }
 
         [HttpPut("{id}/jobOffer/update")]

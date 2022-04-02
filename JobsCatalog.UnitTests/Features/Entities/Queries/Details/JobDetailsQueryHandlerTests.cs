@@ -32,6 +32,7 @@ namespace JobsCatalog.UnitTests.Features.Entities.Queries.Details
             result.Should().BeOfType<JobDetailsVm>();
             result.Id.Should().BeGreaterThan(0);
             result.PositionName.Should().NotBeNullOrWhiteSpace();
+            result.ExperienceLevel.Should().NotBeNullOrWhiteSpace();
             result.SalaryMin.Should().BeGreaterThanOrEqualTo(2800);
             result.SalaryMax.Should().BeGreaterThanOrEqualTo(2800);
             result.City.Should().NotBeNullOrWhiteSpace();

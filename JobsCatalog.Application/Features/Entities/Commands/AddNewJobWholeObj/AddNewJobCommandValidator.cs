@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
+namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj
 {
     public class AddNewJobCommandValidator : AbstractValidator<AddNewJobCommand>
     {
@@ -59,7 +59,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
             RuleFor(x => x.Model.Technologies.Count).GreaterThan(0);
             RuleFor(x => x.Model.Technologies).Custom((list, context) =>
             {
-                var technologies = _dbcontext.ProgrammingLanguages
+                var technologies = _dbcontext.Technologies
                 .Where(x => list.Contains(x.Id))
                 .Select(x => x.Id)
                 .ToList();

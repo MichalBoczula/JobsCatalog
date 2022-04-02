@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
 using JobsCatalog.Application.Mapping;
 using JobsCatalog.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
+namespace JobsCatalog.Application.Features.Entities.Commands.AddJobDesc
 {
-    public class AddJob_JobDescritpionDto : IMapFrom<JobDescription>
+    public class AddJobDescDto : IMapFrom<JobDescription>
     {
         public string About { get; set; }
         public string Responsibilities { get; set; }
@@ -13,7 +18,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<AddJob_JobDescritpionDto, JobDescription>()
+            profile.CreateMap<AddJobDescDto, JobDescription>()
                 .ForMember(x => x.Id, opt => opt.Ignore())
                 .ForMember(x => x.JobOfferId, opt => opt.Ignore())
                 .ForMember(x => x.JobOffer, opt => opt.Ignore())

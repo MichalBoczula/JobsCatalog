@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJob
+namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj
 {
     public class AddNewJobCommand : IRequest<int?>, ICommandTag
     {
