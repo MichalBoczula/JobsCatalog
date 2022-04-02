@@ -21,7 +21,7 @@ namespace JobsCatalog.Application.Behaviors
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
-            Task.Run(() =>
+            await Task.Run(() =>
                    _logger.LogInformation("JobsCatalog Request: {Name} {@Request}",
                    requestName, request), cancellationToken);
         }
