@@ -23,7 +23,8 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj
                 .ForMember(x => x.Modified, opt => opt.Ignore())
                 .ForMember(x => x.StatusId, opt => opt.Ignore())
                 .ForMember(x => x.InactivatedBy, opt => opt.Ignore())
-                .ForMember(x => x.Inactivated, opt => opt.Ignore());
+                .ForMember(x => x.Inactivated, opt => opt.Ignore())
+                .ForMember(x => x.VersionStamp, opt => opt.Ignore());
         }
     }
 }

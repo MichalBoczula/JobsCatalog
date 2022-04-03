@@ -15,5 +15,6 @@ namespace JobsCatalog.Domain.Common
         public int StatusId { get; set; }
         public string InactivatedBy { get; set; }
         public DateTimeOffset Inactivated { get; set; }
+        public string VersionStamp { get; set; }
     }
 }
