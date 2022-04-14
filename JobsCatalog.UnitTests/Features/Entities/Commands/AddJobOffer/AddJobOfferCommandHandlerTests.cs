@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using JobsCatalog.Application.Features.Entities.Commands.AddJobOffer;
-using JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj;
 using JobsCatalog.Persistance.Context;
 using JobsCatalog.UnitTests.Common.TestBases;
 using System;

@@ -1,6 +1,5 @@
 ﻿using JobsCatalog.Application.Features.Entities.Commands.AddJobDesc;
 using JobsCatalog.Application.Features.Entities.Commands.AddJobOffer;
-using JobsCatalog.Application.Features.Entities.Commands.AddNewJobWholeObj;
 using JobsCatalog.Application.Features.Entities.Commands.AddTechnology;
 using JobsCatalog.Application.Features.Entities.Commands.DeleteJob;
 using JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology;
@@ -36,13 +35,6 @@ namespace JobsCatalogApi.Controllers
         {
             var vm = await Mediator.Send(new JobDetailsQuery() { Id = id });
             return vm is null ? NotFound() : Ok(vm);
-        }
-
-        [HttpPost("AddWholeJobObj")]
-        public async Task<ActionResult> CreateJobWithDescAndTechSet([FromBody] AddNewJobVm model)
-        {
-            var vm = await Mediator.Send(new AddNewJobCommand() { Model = model });
-            return vm is null ? BadRequest() : CreatedAtAction(nameof(GetJobDetails), new { id = vm }, new { id = vm });
         }
 
         [HttpPost("addJobOffer")]

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.Persistance", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.UnitTests", "JobsCatalog.UnitTests\JobsCatalog.UnitTests.csproj", "{0920C336-346B-4E05-A4BF-22A433C38563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.IntegrationTests", "JobsCatalog.IntegrationTests\JobsCatalog.IntegrationTests.csproj", "{F7E54673-51FE-4711-B13A-464F10035DA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.IntegrationTests", "..\IntegrationTests\JobsCatalog.IntegrationTests\JobsCatalog.IntegrationTests.csproj", "{7B341EF5-31DA-459C-9471-99A587067DCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,10 @@ Global
 		{0920C336-346B-4E05-A4BF-22A433C38563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0920C336-346B-4E05-A4BF-22A433C38563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0920C336-346B-4E05-A4BF-22A433C38563}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7E54673-51FE-4711-B13A-464F10035DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7E54673-51FE-4711-B13A-464F10035DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7E54673-51FE-4711-B13A-464F10035DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7E54673-51FE-4711-B13A-464F10035DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B341EF5-31DA-459C-9471-99A587067DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B341EF5-31DA-459C-9471-99A587067DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B341EF5-31DA-459C-9471-99A587067DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B341EF5-31DA-459C-9471-99A587067DCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +63,7 @@ Global
 		{4F8F6219-2AAD-4840-B17B-3E6A50014F4D} = {34A9C666-555C-4C06-AB5C-5B4F8CDB9A29}
 		{25AC0CD7-48D1-45CB-9672-2B501B02DCB8} = {59E5AE5D-0FB4-42AE-8DC4-E8D7132C3132}
 		{0920C336-346B-4E05-A4BF-22A433C38563} = {B4F782C3-9955-4EFB-B66C-D572649A5487}
-		{F7E54673-51FE-4711-B13A-464F10035DA4} = {B4F782C3-9955-4EFB-B66C-D572649A5487}
+		{7B341EF5-31DA-459C-9471-99A587067DCF} = {B4F782C3-9955-4EFB-B66C-D572649A5487}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69B098FF-89DD-4C5C-AAC7-B5B82D646D02}

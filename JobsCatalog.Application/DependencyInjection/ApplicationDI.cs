@@ -21,9 +21,6 @@ namespace JobsCatalog.Application.DependencyInjection
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
             //Pipeline
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(BeginTransactionBehavior<,>));
-            //PostProcessor
-            services.AddTransient(typeof(IRequestPostProcessor<,>), typeof(CloseTransactionBehavior<,>));
             return services;
         }
     }
