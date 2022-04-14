@@ -23,7 +23,7 @@ namespace JobsCatalog.API
             try
             {
                 Log.Information("Application is starting up");
-                CreateHostBuilder(args).UseSerilog().Build().Run();
+                CreateWebHostBuilder(args).UseSerilog().Build().Run();
             }
             catch
             {
@@ -36,7 +36,7 @@ namespace JobsCatalog.API
 
         }
 
-        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {

@@ -14,11 +14,11 @@ namespace JobsCatalog.API.Controllers
     [ApiController]
     public class StatisticsController : BaseController
     {
-        [HttpGet("experienceLevel")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> CreateJob(string experienceLevel)
+        public async Task<ActionResult> GetStats(string experienceLevel)
         {
             var vm = await Mediator.Send(new AveragePaymentQuery() { ExperienceLevelName = experienceLevel});
             return vm.ExperienceLevelSalariesDtos.Count == 0 ? NotFound() : Ok(vm);
