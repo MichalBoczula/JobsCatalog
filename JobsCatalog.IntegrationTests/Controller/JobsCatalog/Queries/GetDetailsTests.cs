@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.IntegrationTests.Controller.JobsCatalogController.Queries
+namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Queries
 {
     public class GetDetailsTests : IClassFixture<MyWebApplicationFactory<Startup>>
     {
@@ -39,7 +39,7 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalogController.Queries
             var client = await _factory.GetAuthenticatedClientAsync();
 
             var response = await client.GetAsync($"api/jobs/1111");
-            
+
             var vm = await Utilities.GetResponseContent<NotFoundResult>(response);
             vm.StatusCode.ShouldBe(404);
         }

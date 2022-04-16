@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.IntegrationTests.Controller.JobsCatalogController.Queries
+namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Queries
 {
     public class GetListTests : IClassFixture<MyWebApplicationFactory<Startup>>
     {
@@ -26,7 +26,7 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalogController.Queries
             var client = await _factory.GetAuthenticatedClientAsync();
 
             var response = await client.GetAsync($"api/jobs");
-           
+
             response.EnsureSuccessStatusCode();
             var vm = await Utilities.GetResponseContent<List<JobsListVm>>(response);
             vm.Count.ShouldBe(15);

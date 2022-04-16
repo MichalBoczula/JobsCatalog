@@ -1,5 +1,0 @@
-{
-  "ConnectionStrings": {
-    "AppDbContext": "Server=localhost;Database=aspnet-BookCatalog;User Id=?????;Password=?????;"
-  }
-}

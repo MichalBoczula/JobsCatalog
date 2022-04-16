@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.IntegrationTests.Controller.DictionaryController
+namespace JobsCatalog.IntegrationTests.Controller.Dictionary
 {
     public class GetTechnologiesTests : IClassFixture<MyWebApplicationFactory<Startup>>
     {
@@ -26,7 +26,7 @@ namespace JobsCatalog.IntegrationTests.Controller.DictionaryController
             var client = await _factory.GetAuthenticatedClientAsync();
 
             var response = await client.GetAsync($"api/dictionaries/technologies");
-            
+
             response.EnsureSuccessStatusCode();
             var vm = await Utilities.GetResponseContent<List<TechnologyVm>>(response);
             vm.ShouldBeOfType<List<TechnologyVm>>();

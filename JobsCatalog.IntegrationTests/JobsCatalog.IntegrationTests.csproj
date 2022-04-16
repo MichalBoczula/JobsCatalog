@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\JobsCatalog\JobsCatalog.API\JobsCatalog.API.csproj" />
-    <ProjectReference Include="..\..\JobsCatalog\JobsCatalog.Application\JobsCatalog.Application.csproj" />
-    <ProjectReference Include="..\..\JobsCatalog\JobsCatalog.Persistance\JobsCatalog.Persistance.csproj" />
+    <ProjectReference Include="..\JobsCatalog.API\JobsCatalog.API.csproj" />
+    <ProjectReference Include="..\JobsCatalog.Application\JobsCatalog.Application.csproj" />
+    <ProjectReference Include="..\JobsCatalog.Persistance\JobsCatalog.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.IntegrationTests.Controller.DictionaryController
+namespace JobsCatalog.IntegrationTests.Controller.Dictionary
 {
     public class GetExperienceLevelsTests : IClassFixture<MyWebApplicationFactory<Startup>>
     {

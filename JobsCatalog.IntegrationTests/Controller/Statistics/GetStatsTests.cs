@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JobsCatalog.IntegrationTests.Controller.StatisticsController
+namespace JobsCatalog.IntegrationTests.Controller.Statistics
 {
     public class GetStatsTests : IClassFixture<MyWebApplicationFactory<Startup>>
     {
@@ -27,7 +27,7 @@ namespace JobsCatalog.IntegrationTests.Controller.StatisticsController
 
             var response = await client.GetAsync($"api/stats?experienceLevel=all");
             response.EnsureSuccessStatusCode();
-            
+
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
             vm.ExperienceLevelSalariesDtos.Count.ShouldBe(4);

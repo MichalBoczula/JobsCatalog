@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace JobsCatalog.IntegrationTests.Configuration
 {
     public class MyWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
-        where TStartup : class
+       where TStartup : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
