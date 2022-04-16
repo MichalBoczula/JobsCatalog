@@ -20,7 +20,7 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ExperienceLevelVm>> GetExperienceLevels()
+        public async Task<ActionResult<List<ExperienceLevelVm>>> GetExperienceLevels()
         {
             var vm = await Mediator.Send(new ExperienceLevelQuery());
             return Ok(vm);
@@ -40,7 +40,7 @@ namespace JobsCatalogApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<TechnologyVm>> GetTechnologies()
+        public async Task<ActionResult<List<TechnologyVm>>> GetTechnologies()
         {
             var vm = await Mediator.Send(new TechnologyQuery());
             return Ok(vm);
