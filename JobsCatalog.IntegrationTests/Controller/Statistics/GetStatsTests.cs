@@ -23,11 +23,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetAllStats()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=all");
-            response.EnsureSuccessStatusCode();
 
+            //assert
+            response.EnsureSuccessStatusCode();
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
             vm.ExperienceLevelSalariesDtos.Count.ShouldBe(4);
@@ -36,11 +39,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetJuniorStats()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=junior");
+            
+            //assert
             response.EnsureSuccessStatusCode();
-
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
             vm.ExperienceLevelSalariesDtos.Count.ShouldBe(1);
@@ -49,11 +55,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetMidStats()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=mid");
             response.EnsureSuccessStatusCode();
 
+            //assert
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
             vm.ExperienceLevelSalariesDtos.Count.ShouldBe(1);
@@ -62,11 +71,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetSeniorStats()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=senior");
             response.EnsureSuccessStatusCode();
 
+            //assert
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
             vm.ExperienceLevelSalariesDtos.Count.ShouldBe(1);
@@ -75,11 +87,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetExpertStats()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=expert");
+            
+            //assert
             response.EnsureSuccessStatusCode();
-
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ShouldNotBeNull();
         }
@@ -87,10 +102,13 @@ namespace JobsCatalog.IntegrationTests.Controller.Statistics
         [Fact]
         public async Task GetStatsWrongParam()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
-
+            
+            //act
             var response = await client.GetAsync($"api/stats?experienceLevel=test");
 
+            //assert
             var vm = await Utilities.GetResponseContent<AveragePaymentVm>(response);
             vm.ExperienceLevelSalariesDtos.ShouldBeNull();
         }

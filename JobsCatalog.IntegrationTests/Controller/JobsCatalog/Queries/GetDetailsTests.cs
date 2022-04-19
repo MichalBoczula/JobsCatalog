@@ -24,11 +24,14 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Queries
         [Fact]
         public async Task GetJobDetails()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/jobs/1");
+            
+            //assert
             response.EnsureSuccessStatusCode();
-
             var vm = await Utilities.GetResponseContent<JobDetailsVm>(response);
             vm.ShouldBeOfType<JobDetailsVm>();
         }
@@ -36,10 +39,13 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Queries
         [Fact]
         public async Task GetJobDetails_JobDoesntExist()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/jobs/1111");
 
+            //assert
             var vm = await Utilities.GetResponseContent<NotFoundResult>(response);
             vm.StatusCode.ShouldBe(404);
         }

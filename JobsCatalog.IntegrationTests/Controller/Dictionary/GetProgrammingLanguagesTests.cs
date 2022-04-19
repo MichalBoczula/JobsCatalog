@@ -23,11 +23,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Dictionary
         [Fact]
         public async Task GetProgrammingLanguages()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/dictionaries/programmingLanguages");
+            
+            //assert
             response.EnsureSuccessStatusCode();
-
             var vm = await Utilities.GetResponseContent<List<ProgrammingLanguageVm>>(response);
             vm.Count.ShouldBe(5);
         }

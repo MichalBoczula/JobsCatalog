@@ -17,5 +17,12 @@ namespace JobsCatalog.IntegrationTests.Common
 
             return result;
         }
+
+        public static async Task<string> CreateRequestContent(object o)
+        {
+            var result = JsonConvert.SerializeObject(o);
+
+            return result;
+        }
     }
 }

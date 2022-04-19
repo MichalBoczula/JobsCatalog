@@ -23,10 +23,13 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Queries
         [Fact]
         public async Task GetJobList()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/jobs");
 
+            //assert
             response.EnsureSuccessStatusCode();
             var vm = await Utilities.GetResponseContent<List<JobsListVm>>(response);
             vm.Count.ShouldBe(15);

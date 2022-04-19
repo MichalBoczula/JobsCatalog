@@ -23,11 +23,14 @@ namespace JobsCatalog.IntegrationTests.Controller.Dictionary
         [Fact]
         public async Task GetExperienceLevels()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/dictionaries/experienceLevels");
+            
+            //assert
             response.EnsureSuccessStatusCode();
-
             var vm = await Utilities.GetResponseContent<List<ExperienceLevelVm>>(response);
             vm.Count.ShouldBe(4);
         }

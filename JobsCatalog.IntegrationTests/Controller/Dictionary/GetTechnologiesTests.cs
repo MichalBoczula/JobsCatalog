@@ -23,10 +23,13 @@ namespace JobsCatalog.IntegrationTests.Controller.Dictionary
         [Fact]
         public async Task GetTechnologies()
         {
+            //arrange
             var client = await _factory.GetAuthenticatedClientAsync();
 
+            //act
             var response = await client.GetAsync($"api/dictionaries/technologies");
 
+            //assert
             response.EnsureSuccessStatusCode();
             var vm = await Utilities.GetResponseContent<List<TechnologyVm>>(response);
             vm.ShouldBeOfType<List<TechnologyVm>>();
