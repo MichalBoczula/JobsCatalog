@@ -17,6 +17,7 @@ namespace JobsCatalog.Application.DependencyInjection
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            ValidatorOptions.Global.LanguageManager.Enabled = false;
             //PreProcessor
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
             //Pipeline
