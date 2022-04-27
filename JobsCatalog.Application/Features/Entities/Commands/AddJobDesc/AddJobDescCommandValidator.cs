@@ -25,7 +25,16 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddJobDesc
                     .SingleOrDefault(x => x.Id == jobId);
                 if (ele == null)
                 {
-                    context.AddFailure("Job Offer has to exists in dataBase");
+                    context.AddFailure("Job Offer must exists in dataBase");
+                }
+            });
+            RuleFor(x => x.JobOfferId).Custom((jobId, context) =>
+            {
+                var ele = _dbcontext.JobDescriptions
+                    .SingleOrDefault(x => x.JobOfferId == jobId);
+                if (ele != null)
+                {
+                    context.AddFailure("Job Offer has had description already");
                 }
             });
         }

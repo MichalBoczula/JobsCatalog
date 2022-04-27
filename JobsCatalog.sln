@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.Persistance", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.UnitTests", "JobsCatalog.UnitTests\JobsCatalog.UnitTests.csproj", "{0920C336-346B-4E05-A4BF-22A433C38563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsCatalog.IntegrationTests", "JobsCatalog.IntegrationTests\JobsCatalog.IntegrationTests.csproj", "{7C292928-D8CF-467B-9A5D-664BFB4920AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsCatalog.IntegrationTests", "JobsCatalog.IntegrationTests\JobsCatalog.IntegrationTests.csproj", "{7C292928-D8CF-467B-9A5D-664BFB4920AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustFindJob.IDP", "..\..\IDP\JustFindJob.IDP\JustFindJob.IDP.csproj", "{1D0EB7F1-E385-48B8-84BB-5952972A6D4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{7C292928-D8CF-467B-9A5D-664BFB4920AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C292928-D8CF-467B-9A5D-664BFB4920AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C292928-D8CF-467B-9A5D-664BFB4920AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0EB7F1-E385-48B8-84BB-5952972A6D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0EB7F1-E385-48B8-84BB-5952972A6D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0EB7F1-E385-48B8-84BB-5952972A6D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0EB7F1-E385-48B8-84BB-5952972A6D4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

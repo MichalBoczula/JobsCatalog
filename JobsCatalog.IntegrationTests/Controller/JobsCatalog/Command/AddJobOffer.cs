@@ -16,7 +16,7 @@ using Xunit;
 
 namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Command
 {
-    [Collection("AddJob")]
+    [Collection("AddJobOffer")]
     public class AddJobOffer : IClassFixture<MyWebApplicationFactory<Startup>>
     {
         private readonly MyWebApplicationFactory<Startup> _factory;
