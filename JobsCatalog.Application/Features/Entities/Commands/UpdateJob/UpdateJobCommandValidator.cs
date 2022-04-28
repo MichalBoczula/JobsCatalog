@@ -21,7 +21,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
             {
                 if (model.SalaryMin > model.SalaryMax)
                 {
-                    context.AddFailure("SalaryMax has to be bigger than SalaryMin");
+                    context.AddFailure("SalaryMax must be bigger than SalaryMin");
                 }
             });
             RuleFor(x => x.Model.City).NotEmpty();
@@ -31,7 +31,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
                     .SingleOrDefault(x => x.Id == expId);
                 if (ele == null)
                 {
-                    context.AddFailure("ExperienceLevel has to exist in dictionary");
+                    context.AddFailure("ExperienceLevel must exists in dictionary");
                 }
             });
             RuleFor(x => x.Model.CompanyId).Custom((comId, context) =>
@@ -40,7 +40,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
                     .SingleOrDefault(x => x.Id == comId);
                 if (ele == null)
                 {
-                    context.AddFailure("Company has to exists in dataBase");
+                    context.AddFailure("Company must exists in dataBase");
                 }
             });
             RuleFor(x => x.Model.ProgrammingLanguageId).Custom((plId, context) =>
@@ -49,7 +49,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
                     .SingleOrDefault(x => x.Id == plId);
                 if (ele == null)
                 {
-                    context.AddFailure("ProgrammingLanguage has to exist in dictionary");
+                    context.AddFailure("ProgrammingLanguage must exist in dictionary");
                 }
             });
         }
