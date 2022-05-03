@@ -45,7 +45,8 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Command
             var response = await client.PutAsJsonAsync($"api/jobs/1/JobOffer/update", obj);
 
             //assert
-            response.ReasonPhrase.ShouldBe("No Content");
+            response.StatusCode.ShouldBe(System.Net.HttpStatusCode.NoContent);
+            response.IsSuccessStatusCode.ShouldBeTrue();
         }
 
         [Fact]
@@ -247,10 +248,13 @@ namespace JobsCatalog.IntegrationTests.Controller.JobsCatalog.Command
             };
 
             //act
-            var response = await client.PutAsJsonAsync($"api/jobs/1111/JobOffer/update", obj).ShouldThrowAsync<DbUpdateConcurrencyException>();
+            var response = await client.PutAsJsonAsync($"api/jobs/1111/JobOffer/update", obj).ShouldThrowAsync<FluentValidation.ValidationException>();
 
             //assert
-            response.Message.ShouldBe("Attempted to update or delete an entity that does not exist in the store.");
+            response.Errors.Count().ShouldBe(1);
+            var error = response.Errors.First();
+            error.PropertyName.ShouldBe("Id");
+            error.ErrorMessage.ShouldBe($"JobOffer with id: 1111 does not exist in db");
         }
     }
 }

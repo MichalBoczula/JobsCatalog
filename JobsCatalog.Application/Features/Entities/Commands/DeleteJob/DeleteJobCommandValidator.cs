@@ -18,8 +18,8 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteJob
             _dbcontext = dbContext;
             RuleFor(command => command.Id).Custom((jobOfferId, context) =>
             {
-                var jobOffer = _dbcontext.JobOffers.SingleOrDefault(x => x.Id == jobOfferId);
-                if (jobOffer is null)
+                var jobOffer = _dbcontext.JobOffers.Where(x => x.Id == jobOfferId).Any();
+                if (jobOffer is false)
                 {
                     context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
                 }

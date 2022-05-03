@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using JobsCatalog.Application.Contracts.Persistance;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,14 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
                 if (ele == null)
                 {
                     context.AddFailure("ProgrammingLanguage must exist in dictionary");
+                }
+            });
+            RuleFor(x => x.Id).Custom((jobOfferId, context) =>
+            {
+                var jobOffer = _dbcontext.JobOffers.Where(x => x.Id == jobOfferId).Any();
+                if (jobOffer is false)
+                {
+                    context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
                 }
             });
         }
