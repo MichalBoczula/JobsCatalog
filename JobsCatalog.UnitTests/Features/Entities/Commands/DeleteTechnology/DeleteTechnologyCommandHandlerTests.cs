@@ -27,22 +27,22 @@ namespace JobsCatalog.UnitTests.Features.Entities.Commands.DeleteTechnology
         {
             var technologiesBeforeUpdate = _context.JobOfferTechnologies
                 .Where(x => x.JobOfferId == 1).Select(x => x.TechnologyId).ToList();
-            var technologies = new List<int> { 2, 1 };
             var handler = new DeleteTechnologyCommandHandler(_context);
             var result = await handler.Handle(
                 new DeleteTechnologyCommand
                 {
                     JobOfferId = 1,
-                    Technologies = technologies
+                    TechnologyId = 1
                 },
                 CancellationToken.None);
 
             var technologiesAfterUpdate = _context.JobOfferTechnologies
                 .Where(x => x.JobOfferId == 1).Select(x => x.TechnologyId).ToList();
 
-            result.Should().Be(2);
-            technologiesAfterUpdate.Should().HaveCount(1);
-            technologiesAfterUpdate[0].Should().Be(3);
+            result.Should().Be(1);
+            technologiesAfterUpdate.Should().HaveCount(2);
+            technologiesAfterUpdate[0].Should().Be(2);
+            technologiesAfterUpdate[1].Should().Be(3);
         }
     }
 }

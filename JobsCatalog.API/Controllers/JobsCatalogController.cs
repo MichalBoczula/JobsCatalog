@@ -79,10 +79,10 @@ namespace JobsCatalogApi.Controllers
             return vm is not null ? NoContent() : BadRequest();
         }
 
-        [HttpDelete("{id}/technologies/delete")]
-        public async Task<ActionResult> DeleteTechnology(int id, [FromBody] List<int> technologies)
+        [HttpDelete("{id}/technologies/{technologyId}/delete")]
+        public async Task<ActionResult> DeleteTechnology(int id, int technologyId)
         {
-            var vm = await Mediator.Send(new DeleteTechnologyCommand() { Technologies = technologies, JobOfferId = id });
+            var vm = await Mediator.Send(new DeleteTechnologyCommand() { TechnologyId = technologyId, JobOfferId = id });
             return vm is not null ? NoContent() : BadRequest();
         }
     }

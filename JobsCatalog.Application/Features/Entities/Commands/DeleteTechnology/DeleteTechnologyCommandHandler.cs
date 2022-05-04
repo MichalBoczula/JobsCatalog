@@ -21,13 +21,12 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology
 
         public async Task<int?> Handle(DeleteTechnologyCommand request, CancellationToken cancellationToken)
         {
-            var techsToRemove = request.Technologies
-                .Select(x => new JobOfferTechnology
-                {
-                    JobOfferId = request.JobOfferId,
-                    TechnologyId = x
-                }).ToList();
-            _context.JobOfferTechnologies.RemoveRange(techsToRemove);
+            var techToRemove = new JobOfferTechnology
+            {
+                JobOfferId = request.JobOfferId,
+                TechnologyId = request.TechnologyId
+            };
+            _context.JobOfferTechnologies.RemoveRange(techToRemove);
             var result = await _context.SaveChangesAsync(cancellationToken);
             return result > 0 ? result : null;
         }
