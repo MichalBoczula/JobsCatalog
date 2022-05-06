@@ -22,7 +22,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescriptio
             RuleFor(x => x.Model.Offer).NotEmpty();
             RuleFor(x => x.JobOfferId).Custom((jobOfferId, context) =>
             {
-                var jobOffer = _dbcontext.JobOffers.Where(x => x.Id == jobOfferId).Any();
+                var jobOffer = _dbcontext.JobOffers.Any(x => x.Id == jobOfferId);
                 if (jobOffer is false)
                 {
                     context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
@@ -30,7 +30,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJobDescriptio
             });
             RuleFor(x => x.JobOfferId).Custom((jobOfferId, context) =>
             {
-                var jobDesc = _dbcontext.JobDescriptions.Where(x => x.JobOfferId == jobOfferId).Any();
+                var jobDesc = _dbcontext.JobDescriptions.Any(x => x.JobOfferId == jobOfferId);
                 if (jobDesc is false)
                 {
                     context.AddFailure($"JobDesc for JobOffer with Id: {jobOfferId} does not exist in db");

@@ -55,7 +55,7 @@ namespace JobsCatalog.Application.Features.Entities.Commands.UpdateJob
             });
             RuleFor(x => x.Id).Custom((jobOfferId, context) =>
             {
-                var jobOffer = _dbcontext.JobOffers.Where(x => x.Id == jobOfferId).Any();
+                var jobOffer = _dbcontext.JobOffers.Any(x => x.Id == jobOfferId);
                 if (jobOffer is false)
                 {
                     context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
