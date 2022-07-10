@@ -18,8 +18,8 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddTechnology
             _dbcontext = dbContext;
             RuleFor(command => command.JobOfferId).Custom((jobOfferId, context) =>
             {
-                var jobOffer = _dbcontext.JobOffers.SingleOrDefault(x => x.Id == jobOfferId);
-                if (jobOffer is null)
+                var jobOffer = _dbcontext.JobOffers.Any(x => x.Id == jobOfferId);
+                if (jobOffer is false)
                 {
                     context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
                 }
@@ -28,14 +28,9 @@ namespace JobsCatalog.Application.Features.Entities.Commands.AddTechnology
             {
                 technologies.ForEach(x =>
                 {
-                    if((x is int) == false)
-                    {
-                        context.AddFailure($"Technology id has to be int, error caused by {x} value");
-                    }
-
                     if (x < 0)
                     {
-                        context.AddFailure($"Technology id has to be greater then 0, error caused by {x} value");
+                        context.AddFailure($"Technology id must be greater then 0, error caused by {x} value");
                     }
                 });
 

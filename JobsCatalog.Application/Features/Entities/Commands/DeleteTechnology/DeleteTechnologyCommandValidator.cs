@@ -17,51 +17,28 @@ namespace JobsCatalog.Application.Features.Entities.Commands.DeleteTechnology
             _dbcontext = dbContext;
             RuleFor(command => command.JobOfferId).Custom((jobOfferId, context) =>
             {
-                var jobOffer = _dbcontext.JobOffers.SingleOrDefault(x => x.Id == jobOfferId);
-                if (jobOffer is null)
+                var jobOffer = _dbcontext.JobOffers.Any(x => x.Id == jobOfferId);
+                if (jobOffer is false)
                 {
                     context.AddFailure($"JobOffer with id: {jobOfferId} does not exist in db");
                 }
             });
-            RuleFor(command => command.Technologies).Custom((technologies, context) =>
+            RuleFor(command => command.TechnologyId).Custom((technology, context) =>
             {
-                technologies.ForEach(x =>
+                if (technology < 0)
                 {
-                    if ((x is int) == false)
-                    {
-                        context.AddFailure($"Technology id has to be int, error caused by {x} value");
-                    }
-
-                    if (x < 0)
-                    {
-                        context.AddFailure($"Technology id has to be greater then 0, error caused by {x} value");
-                    }
-                });
-
-                technologies.GroupBy(x => x).Select(x => new
-                {
-                    x.Key,
-                    Amount = x.Count()
-                }).ToList().ForEach(x =>
-                {
-                    if (x.Amount > 1)
-                    {
-                        context.AddFailure($"Technology id {x.Key} has been added to request {x.Amount} times, input unique value");
-                    }
-                });
+                    context.AddFailure($"Technology id has to be greater then 0, error caused by {technology} value");
+                }
             });
             RuleFor(command => command).Custom((command, context) =>
             {
                 var joT = _dbcontext.JobOfferTechnologies.Where(x => x.JobOfferId == command.JobOfferId)
                     .Select(x => x.TechnologyId).ToList();
 
-                command.Technologies.ForEach(techId =>
+                if (joT.Contains(command.TechnologyId) == false)
                 {
-                    if (joT.Contains(techId) == false)
-                    {
-                        context.AddFailure($"Technology with id {techId} does not exist in job identify by {command.JobOfferId}");
-                    }
-                });
+                    context.AddFailure($"Technology with id {command.TechnologyId} does not exist in job identify by {command.JobOfferId}");
+                }
             });
         }
     }
