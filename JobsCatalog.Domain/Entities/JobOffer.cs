@@ -21,5 +21,6 @@ namespace JobsCatalog.Domain.Entities
         public ProgrammingLanguage ProgrammingLanguage { get; set; }
         public JobDescription JobDescription { get; set; }
         public ICollection<JobOfferTechnology> JobOfferTechnology { get; set; }
+        public string IntegrationId { get; set; }
     }
 }
